@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>tags | 李青帝</title>
+        <title>杨辉三角 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -28,6 +28,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -141,23 +145,90 @@
 </transition>
 
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div id="archives">
-    
-    <div class="categories-tags">
+                <div class="article">
+    <div>
+        <h1>杨辉三角</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/15
+        </span>
         
-        
-        
-        <span>
-            <a href="/tags/C/" style="background: #00a596">
+        <span class="category">
+            <a href="/categories/Algorithm/">
                 <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                C
+                Algorithm
             </a>
         </span>
         
         
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #00bcd4">C</a>
+            </span>
+            
+        </span>
+        
     </div>
+    
+    <div class="content" v-pre>
+        <pre><code class="c">#include&lt;stdio.h&gt;//杨辉三角
+#include &lt;iostream&gt;
+#include&lt;string.h&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+int main()
+&#123;
+    int j, i, k, n = 0, a[20][20];
+    while (n &lt;= 0 || n &gt;= 20)
+    &#123;
+        printf(&quot;请输入要打的行数：&quot;);
+        scanf_s(&quot;%d&quot;, &amp;n);
+    &#125;
+    for (i = 1; i &lt;= n; i++)
+    &#123;
+        a[i][1] = a[i][i] = 1;
+    &#125;
+    for (i = 3; i &lt;= n; i++)
+    &#123;
+        for (j = 2; j &lt;= i - 1; j++)
+        &#123;
+            a[i][j] = a[i - 1][j - 1] + a[i - 1][j];
+        &#125;
+    &#125;
+    for (i = 1; i &lt; n; i++)
+    &#123;
+        for (k = 1; k &lt;= n - i; k++)
+        &#123;
+            printf(&quot;  &quot;);
+        &#125;
+        for (j = 1; j &lt;= i; j++)
+        &#123;
+            printf(&quot;%6d&quot;, a[i][j]);
+        &#125;
+        printf(&quot;\n&quot;);
+    &#125;
+&#125;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -189,6 +260,12 @@
             
         </div>
         <script src="/js/main.js"></script>
+        
+        
+
+
+
+
         
     </body>
 </html>
