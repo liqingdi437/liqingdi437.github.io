@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>Tags: C | 李青帝</title>
+        <title>burpsuite中GET修改为POST并添加post参数 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -28,6 +28,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -141,116 +145,119 @@
 </transition>
 
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/tags/hexo/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                hexo
-            </a>
+                <div class="article">
+    <div>
+        <h1>burpsuite中GET修改为POST并添加post参数</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/17
         </span>
         
         
-        
-        <span>
-            <a href="/tags/C/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                C
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/burpsuite/" style="color: #00a596">burpsuite</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/GET/" style="color: #00bcd4">GET</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/POST/" style="color: #00a596">POST</a>
+            </span>
+            
         </span>
-        
-        
-        
-        
-        
-        <span>
-            <a href="/tags/burpsuite/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                burpsuite
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/GET/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                GET
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/POST/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                POST
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/SSH/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                SSH
-            </a>
-        </span>
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/9/15</div>
-            <a href="/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/">
-                <h3>杨辉三角</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/Algorithm/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        Algorithm
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/C/" style="color: #ffa2c4">C</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <h1 id="MoeCTF-http"><a href="#MoeCTF-http" class="headerlink" title="[MoeCTF]http"></a>[MoeCTF]http</h1><p><img src="/images/%5BMoeCTF%5Dhttp.png"></p>
+<pre><code>this is GET method,
+
+# your mission:
+
+1.use parameter: UwU=u
+2.post **form**: Luv=u
+3.use admin character
+4.request from 127.0.0.1
+5.use browser &#39;MoeBrowser&#39;
+Complete All Missions
+</code></pre>
+<p>抓包：</p>
+<pre><code class="http">GET / HTTP/1.1
+Host: localhost:59172
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Connection: close
+Cookie: character=guest
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+</code></pre>
+<p>发到repeater</p>
+<p>根据任务要求</p>
+<pre><code>1.GET:UwU=u
+
+2.POST:Luv=u
+
+3.Cookie:character=admin
+
+4.X-Forwarded-For: 127.0.0.1
+
+5.User-Agent: MoeBrowser
+</code></pre>
+<p>修改后，得到：</p>
+<pre><code class="http">POST /?UwU=u HTTP/1.1
+Host: 127.0.0.1:59172
+User-Agent: MoeBrowser
+X-Forwarded-For: 127.0.0.1
+Connection: close
+Cookie: character=admin
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Content-Length: 5
+Content-Type: application/x-www-form-urlencoded
+
+Luv=u
+</code></pre>
+<p>具体解题过程：</p>
+<p>1.<code>GET / HTTP/1.1</code>修改为<code>GET /?UwU=u HTTP/1.1</code></p>
+<p>或者在<code>Params</code>中添加一个<code>Type：URL，Name：UwU，Value：u</code></p>
+<p>2.<code>GET /?UwU=u HTTP/1.1</code>修改为<code>POST /?UwU=u HTTP/1.1</code></p>
+<p>在<code>Params</code>中添加一个<code>Type：body，Name：Luv，Value：u</code></p>
+<p>3.<code>Cookie:character=admin</code>修改为<code>Cookie:character=admin</code></p>
+<p>4.在<code>User-Agent</code>下面添加<code>X-Forwarded-For: 127.0.0.1</code></p>
+<p>它的具体作用为：告诉服务端请求的来源地址是 <code>127.0.0.1</code>。</p>
+<p>5.将<code>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0</code>修改为<code>User-Agent: MoeBrowser</code></p>
+<p>注：可用火狐的插件**<u><em>hackbar v2</em></u>**进行解题</p>
+
     </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -282,6 +289,12 @@
             
         </div>
         <script src="/js/main.js"></script>
+        
+        
+
+
+
+
         
     </body>
 </html>
