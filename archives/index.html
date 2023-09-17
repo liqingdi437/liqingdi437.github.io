@@ -31,6 +31,8 @@
 
 
 
+<script src="/js/lib/search.js"></script>
+
 
 
 <link rel="stylesheet" href="/css/main.css" />
@@ -144,6 +146,8 @@
                 
 <div id="archives">
     
+    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
+    
     <div id="timeline-wrap" ref="timeline">
         
         <div class="timeline" data-title="helloworld">
@@ -201,7 +205,7 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/C/" style="color: #00bcd4">C</a>
+                            <a href="/tags/C/" style="color: #03a9f4">C</a>
                         </span>
                         
                     </span>
@@ -237,7 +241,7 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/hexo/" style="color: #00bcd4">hexo</a>
+                            <a href="/tags/hexo/" style="color: #ffa2c4">hexo</a>
                         </span>
                         
                     </span>
@@ -273,7 +277,7 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/SSH/" style="color: #ff7d73">SSH</a>
+                            <a href="/tags/SSH/" style="color: #03a9f4">SSH</a>
                         </span>
                         
                     </span>
@@ -300,17 +304,17 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/burpsuite/" style="color: #00a596">burpsuite</a>
+                            <a href="/tags/burpsuite/" style="color: #03a9f4">burpsuite</a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/GET/" style="color: #ff7d73">GET</a>
+                            <a href="/tags/GET/" style="color: #00a596">GET</a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/POST/" style="color: #00a596">POST</a>
+                            <a href="/tags/POST/" style="color: #00bcd4">POST</a>
                         </span>
                         
                     </span>

@@ -30,6 +30,9 @@
 <script src="/js/lib/preview.js"></script>
 
 
+<script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
 
 
 
@@ -166,92 +169,37 @@
             
             <span class="tag">
                 
-                <a href="/tags/burpsuite/" style="color: #00a596">burpsuite</a>
+                <a href="/tags/burpsuite/" style="color: #03a9f4">burpsuite</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/GET/" style="color: #00bcd4">GET</a>
+                <a href="/tags/GET/" style="color: #00a596">GET</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/POST/" style="color: #00a596">POST</a>
+                <a href="/tags/POST/" style="color: #03a9f4">POST</a>
             </span>
             
         </span>
         
     </div>
     
-    <div class="content" v-pre>
-        <h1 id="MoeCTF-http"><a href="#MoeCTF-http" class="headerlink" title="[MoeCTF]http"></a>[MoeCTF]http</h1><p><img src="/images/%5BMoeCTF%5Dhttp.png"></p>
-<pre><code>this is GET method,
-
-# your mission:
-
-1.use parameter: UwU=u
-2.post **form**: Luv=u
-3.use admin character
-4.request from 127.0.0.1
-5.use browser &#39;MoeBrowser&#39;
-Complete All Missions
-</code></pre>
-<p>抓包：</p>
-<pre><code class="http">GET / HTTP/1.1
-Host: localhost:59172
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
-Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
-Accept-Encoding: gzip, deflate
-Connection: close
-Cookie: character=guest
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-</code></pre>
-<p>发到repeater</p>
-<p>根据任务要求</p>
-<pre><code>1.GET:UwU=u
-
-2.POST:Luv=u
-
-3.Cookie:character=admin
-
-4.X-Forwarded-For: 127.0.0.1
-
-5.User-Agent: MoeBrowser
-</code></pre>
-<p>修改后，得到：</p>
-<pre><code class="http">POST /?UwU=u HTTP/1.1
-Host: 127.0.0.1:59172
-User-Agent: MoeBrowser
-X-Forwarded-For: 127.0.0.1
-Connection: close
-Cookie: character=admin
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Content-Length: 5
-Content-Type: application/x-www-form-urlencoded
-
-Luv=u
-</code></pre>
-<p>具体解题过程：</p>
-<p>1.<code>GET / HTTP/1.1</code>修改为<code>GET /?UwU=u HTTP/1.1</code></p>
-<p>或者在<code>Params</code>中添加一个<code>Type：URL，Name：UwU，Value：u</code></p>
-<p>2.<code>GET /?UwU=u HTTP/1.1</code>修改为<code>POST /?UwU=u HTTP/1.1</code></p>
-<p>在<code>Params</code>中添加一个<code>Type：body，Name：Luv，Value：u</code></p>
-<p>3.<code>Cookie:character=admin</code>修改为<code>Cookie:character=admin</code></p>
-<p>4.在<code>User-Agent</code>下面添加<code>X-Forwarded-For: 127.0.0.1</code></p>
-<p>它的具体作用为：告诉服务端请求的来源地址是 <code>127.0.0.1</code>。</p>
-<p>5.将<code>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0</code>修改为<code>User-Agent: MoeBrowser</code></p>
-<p>注：可用火狐的插件**<u><em>hackbar v2</em></u>**进行解题</p>
-
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus == 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="U2FsdGVkX1+lsPjp9x78PaFyi0qPTNqL5aa51+7VTZzp00UMuYScd0iN2uD22Zrz/DWj9omyPp/y/uzae+uBHPXVlObhev2VR9FgN+mWlnhEPvMpwYWm1e1oavP4jF+k8XuF5cHLV1sydOeKMNxxbJBVm0UXB4Msj9Ash6NJEF8VtvU4dn+i8o5n+FtApVxBV0iwblEEXFUc4sMjU3uqc8nD0KJIaqgEj5BTTBTPw3s+Ej2IEcoTQIu/FYxliqG8M5KZt4/+yUiJR7wCYhr/Bk7LSPa5Dhs05eVJ3D++zt4yQdfRJ4TxphoadJEtGFLwF980BHkUYEyeMsDE1pVVess/MtHz7U8/dvYJ72sYJRdEabxzAW1fGdhYHAzEgiB1zJ7eO6wGWeL0tp3N5jqDNnrP5SwByOyN1SZDSClc6QKbMzMoJY7eIWQ1IInbl7BodzDIJs0K2LO4hTnjVXQl/VfjQBMY0BurKH9L+ljRdSHE3wQIkmPYFWkx4e9kVDifttm3fbu26J+vDZKMZc8xANH8y44DINAnJOND1f/c2ydh9NGb94A85QJ2A8ROrF1n/GN+LuJPLUxmL+L56fHTlYsDRhvIdBtGd05lZJukF9H1qpk5MCWalCdiSjUBGlDs+3Dl+tc8q82T1O+SonB5cYcqwCCWPtBPHuXqcDxYoQ5jNj1yMXT+cHZv+/By72KqCjEc0Oh6REo7fqVRmlGTYN4lRpB6dvmF8j16fNcOXvdrYmB7zS5h5e8fga1ZaZw8stCzgkz6SqzxkQpCa/2m3FFcNWOOj6STZExeeCFKZShKv9qRr8mqhi80eE20wjb1f9CVbJYrv/XWgIG0upSIsaR3rNagYIo4MGctmaGgVhd3kA9Ip55iTCT/zeSI5ZwAhZi0FwFMs5O9/XPl4CiYpDGZK322xRLu/LfHKmol8wP4fAIt64tegeRmw/R1tSajX2XzrfHmC2UrQMVIgWHwQLMDWi1mExV8cRJ0ALgfk9pydyFu19haR+0YzVVbsU+wPJSroO96hxpYliqMp5hG4CYD9bIbm3gH06TM8PKjvwv8zlCVeGwh9XVqfLusRyaGX1VzXbuqOcB+M3SSac5ivUsAu3BoZRqXoxZCdjf88E7URZLggMoI3X5iSBs4ubM/vBXQ+agiISjOq2RSL0qUGnRAr8LTWFrxBVa/NtVQEprqM533y+4s0kJljTFKyqG5GWIZezORPps5I2gRKRw5Bly/jVod4RCcdpSNS1RIS7LS1clt9aIbS85oSG3Wp/OrvHFoW9OMebIQ97efCKcMoJzmpb4vYNzv1lFLekThej7Rkbvfk+PhyypUb0/T89amXKU8XR1ITgEmgezr7PwAUlqInRIqEr3puo0LCd0DCLfLy15oMYJdhfMXCJYZjN6gbDqQk7qKgY+4m6rSGaL3tDciU0tPjcCnyfTKqEYMNjYC0zTdT5cc93TqaHYndzwXvBwCxNrgCNrfehTIZtZ4urm37BQTaJVUYfyUutUViQl8B4dw0o26lBGdrPHqZ/muQidX0oOwXMtPgNqYjp1yPcf4mfeQitC9I7sLPhSQ0IL5l2PfuDeLJDFY79B8v4aZFqu4P4G2RqTumX3aeUnQ2aAQ4CDog+h2a5BT+hTLuApTObixbyMFLfltZfTCTFzL1hZ+9vHgXCL9XVcAo2wATRxOEx3RovaqlLGQXtDFVn4N+7Bjo1pe/loWuKbSONFJwbwS8mnF7dmF65vRIb94SLrU2HlgdgN/q+anhPoBqYCzazBG8mAzJBO/aoP37RzRUYg9kEzkRPE2lKGyQIYO/vECelDx+AhoJKNCGzJG7SL9tnbu8isd9ypcAb2u/KVVxp90Nwvc/EoSoa+JyDfkFtBdySzx7Gsb7fEwhXTnpaHh1Ltd6BOyDBKFFXUFZJ0vK2w54YyeJs4FSyhdwIpfRzfC3MuekwQwYR38cwOPKDSWvNOXj/Mvxs0N62Nlac2S4EPyj5FflflEoGm3DpMhKBqk11/uuAs7jChXiwsf9l6zEwoPo/ENkR1RQ5pkf/2Y04lHej0B2zcNvzg3CCM8IFzIBFZmAMBSKcz2qp9ZAmdyaEdjEDzlVxQx4GvqwRU7HWxUan6L4QUk75bPwhtoaUHx/ghTHEXdG8kOl9Gn20e1Y3ldvUKKtSevRSrbjhK0uRWoGQWQlitlzIAjDmtDWGZoJZkZPpDJMznjZrbbJWr4mLIZ9w9RlnDCLLlq96Kr6nzTEcUnsx1uRU4B4z22fFcoFNGV9LOBMouVYyoQyP2K5AQBIoN1f7xRJiZZSToOzZ4KCCQIB2wxinwh0u8RDvCujmv61XxG1eno+oZkzfACy7RxoJAv84Fi0JU+ngg29zMMfMsyttkIzaF+76CYaiC5X72+snVgyBGeXnRuq5g/Kr+SD3MJyIk4C6ttLeCtoMogekCqCgBkNeR2aqLdzyIvx9VW/Jbv4qzLfXD+v7VsyRmPraaGN4mIXrywTUfNk0sal0dYAHb7Xn09RGCHB7GNbIKOVB5nKJJCkl4YeOBRJcfCPgzbgesMWkRkJTEbIiyx+zQWSPaXhtjII43e8sKwYVeu3FVDJZBFwpsVH8N/l3uPGqx49zo+ZmdCetyZ5VJuxy/ibjuX/wXkTMEz1CFq0OWNMnQhqvC1jD0zvieW1iY1/7uYA5DfqKWpDbL9mxjJx8bxxh2Y0iYv923DtyYXx0ava+wqkclBHvQL3NABHSpndQgx4mc6aGKK1A6xyw22MCvHYEMINk47UyIELyMYTmjbNiNMW7QN/pPb9yg4/G8lJEz72zc1Wkvd9IrPlAqMTZMGjDMDxUXC7eAGR2kcSwBnUj5p8T5QovUPQpFsj7ANmCqCLK3/zY99I1DZj3SlcsUyx4bU/vGPjSD8/iFPjd+l8Smrm+JdO6zZjhwLVz8Ada6O1ycpO1zxrRZKol18mSptWlGbRkCVNBuMsCfeGm4XTVaZJYfrN1x0jZPfgQjhNp4Lx3nKFaTjIClbpzvMKOsi3SO6C826lMU8/rMpyvs47PMgXna+9ukFbuMrOBErdAO4fOVICHM0hD8EfWSUDpKzdS+5Spd1oca0MXWlhJe4AE470x+6YpIgFzHpZZrUDNHPqMDPVDJ2YwcRu5h1kp9WDp4pRQV//UP6fn9fTqYCThjy+XiBz+T/xBui4my/uKMt/BWmqBRJl/QGGbhIKOjYuaCsxIiHu0LeeQ=="
+        data-shasum="f5e5450d0ca4819996a785f357871ca15dcc0f644845b768c2e3c3d3f21c2454"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus == 'success'"></div>
+    </transition>
     
     
     
