@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>categories | 李青帝</title>
+        <title>SMB信息泄露 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -28,6 +28,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -141,25 +145,20 @@
 </transition>
 
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/categories/%E6%95%99%E7%A8%8B/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                教程
-            </a>
+                <div class="article">
+    <div>
+        <h1>SMB信息泄露</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/22
         </span>
         
-        
-        
-        <span>
-            <a href="/categories/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" style="background: #ffa2c4">
+        <span class="category">
+            <a href="/categories/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -168,29 +167,59 @@
         </span>
         
         
-        
-        <span>
-            <a href="/categories/%E7%9F%A5%E8%AF%86/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                知识
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/SMB/" style="color: #ff7d73">SMB</a>
+            </span>
+            
         </span>
-        
-        
-        
-        <span>
-            <a href="/categories/Algorithm/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                Algorithm
-            </a>
-        </span>
-        
         
     </div>
+    
+    <div class="content" v-pre>
+        <h1 id="SMB信息泄露"><a href="#SMB信息泄露" class="headerlink" title="SMB信息泄露"></a><strong>SMB信息泄露</strong></h1><p>从外部进入最终<strong>root</strong>主机，取得<strong>flag</strong></p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309220123130.png" alt="image-20230922012234207"></p>
+<h1 id="信息探测"><a href="#信息探测" class="headerlink" title="信息探测"></a><strong>信息探测</strong></h1><p><strong>对于只是给定一个对应IP的靶场机器，我们需要用对其进行扫描，探测开放的服务。</strong></p>
+<p><strong>渗透其实是对服务的漏洞探测，然后进行对应的数据包发送，获取机器的最高权限。</strong></p>
+<pre><code class="shell">nmap -sV IP        #挖掘开放服务信息
+
+nmap -A -v -T4 IP  #挖掘靶场全部信息
+</code></pre>
+<h1 id="分析探测结果"><a href="#分析探测结果" class="headerlink" title="分析探测结果"></a><strong>分析探测结果</strong></h1><p>每一个服务对应计算机的一个端口，用来进行通信。通用端口0~1023端口，在扫描结果中查找特殊端口。</p>
+<p>针对特殊端口进行探测，尤其对开发大端口的http服务进行排查；</p>
+<p>针对<strong>SMB</strong>协议弱点分析</p>
+<h3 id="1，针对SMB协议，使用空口令"><a href="#1，针对SMB协议，使用空口令" class="headerlink" title="1，针对SMB协议，使用空口令"></a><strong>1</strong>，针对SMB协议，使用空口令</h3><p>若口令尝试登陆，并查看敏感文件，下载查看；</p>
+<pre><code class="shell">smbclient -L IP
+
+smbclient &#39;\\IP\share$&#39; #share共享文件
+
+get 敏感文件
+</code></pre>
+<h3 id="2，针对SMB协议远程溢出漏洞进行分析；"><a href="#2，针对SMB协议远程溢出漏洞进行分析；" class="headerlink" title="2，针对SMB协议远程溢出漏洞进行分析；"></a><strong>2</strong>，针对<em>SMB</em>协议远程溢出漏洞进行分析；</h3><pre><code class="shell">searchsploit samba版本号
+
+mysql -h IP -u 用户 -p 密码 #登入数据库
+
+ssh username@IP #登入
+</code></pre>
+<h1 id="针对HTTP协议弱点分析"><a href="#针对HTTP协议弱点分析" class="headerlink" title="针对HTTP协议弱点分析"></a><strong>针对HTTP协议弱点分析</strong></h1><h3 id="1，浏览器查看网站；"><a href="#1，浏览器查看网站；" class="headerlink" title="1，浏览器查看网站；"></a><strong>1</strong>，浏览器查看网站；</h3><h3 id="2，使用dirb-nikto探测；"><a href="#2，使用dirb-nikto探测；" class="headerlink" title="2，使用dirb nikto探测；"></a><strong>2</strong>，使用<strong>dirb nikto</strong>探测；</h3><h3 id="3，寻找突破点，目标登录后台，上传websell；"><a href="#3，寻找突破点，目标登录后台，上传websell；" class="headerlink" title="3，寻找突破点，目标登录后台，上传websell；"></a><strong>3</strong>，寻找突破点，目标登录后台，上传<strong>websell</strong>；</h3><p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309220124080.png" alt="image-20230922012416002"></p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309220124509.png" alt="image-20230922012424428"></p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309220124518.png" alt="image-20230922012433425"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h1><p>对开放<strong>139</strong>和<strong>445</strong>端口的机器一定要注意是否可以直接使用<strong>smbclient</strong>登录到共享目录查找敏感文件。</p>
+<p>一般情况下<strong>flag</strong>值都在&#x2F;root目录下，并且需要提升<strong>root</strong>权限才能查看内容；</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -222,6 +251,12 @@
             
         </div>
         <script src="/js/main.js"></script>
+        
+        
+
+
+
+
         
     </body>
 </html>

