@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>Tags: hexo | 李青帝</title>
+        <title>idc脚本 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -28,6 +28,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -141,138 +145,86 @@
 </transition>
 
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/tags/hexo/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                hexo
-            </a>
+                <div class="article">
+    <div>
+        <h1>idc脚本</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/21
         </span>
         
         
-        
-        
-        
-        <span>
-            <a href="/tags/burpsuite/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                burpsuite
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/IDAPython/" style="color: #00a596">IDAPython</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/SMC/" style="color: #ffa2c4">SMC</a>
+            </span>
+            
         </span>
-        
-        
-        
-        <span>
-            <a href="/tags/GET/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                GET
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/POST/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                POST
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/C/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                C
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/IDAPython/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                IDAPython
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/SMC/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                SMC
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/SSH/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                SSH
-            </a>
-        </span>
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2023/9/15</div>
-            <a href="/Front-Matter/">
-                <h3>Front-Matter</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/%E6%95%99%E7%A8%8B/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        教程
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/hexo/" style="color: #00bcd4">hexo</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <h1 id="HGAME-2023-week3-patchme"><a href="#HGAME-2023-week3-patchme" class="headerlink" title="[HGAME 2023 week3]patchme"></a>[HGAME 2023 week3]patchme</h1><p>SMC：</p>
+<pre><code class="c++">int sub_188C()
+&#123;
+  _BYTE *v0; // rax
+  int v2; // [rsp+Ch] [rbp-1B4h] BYREF
+  int j; // [rsp+10h] [rbp-1B0h]
+  int fd; // [rsp+14h] [rbp-1ACh]
+  char *i; // [rsp+18h] [rbp-1A8h]
+  char buf[408]; // [rsp+20h] [rbp-1A0h] BYREF
+  unsigned __int64 v7; // [rsp+1B8h] [rbp-8h]
+
+  v7 = __readfsqword(0x28u);
+  fd = open(&quot;/proc/self/status&quot;, 0);
+  read(fd, buf, 0x190uLL);
+  for ( i = buf; *i != 84 || i[1] != 114 || i[2] != 97 || i[3] != 99 || i[4] != 101 || i[5] != 114; ++i )
+    ;
+  i += 11;
+  __isoc99_sscanf(i, &amp;unk_2008, &amp;v2);
+  if ( v2 )
+    exit(0);
+  LODWORD(v0) = mprotect((void *)((unsigned __int64)&amp;loc_14C6 &amp; 0xFFFFFFFFFFFFF000LL), 0x3000uLL, 7);
+  for ( j = 0; j &lt;= 960; ++j )
+  &#123;
+    v0 = (char *)&amp;loc_14C6 + j;
+    *v0 ^= 0x66u;
+  &#125;
+  return (int)v0;
+&#125;
+</code></pre>
+<p>起始地址：0x14C6</p>
+<p>异或：0x66</p>
+<p>EXP：</p>
+<pre><code class="python">import idc
+ 
+addr = 0x14C6   #起始地址
+for i in range(961):
+    idc.patch_byte(addr+i, idc.get_wide_byte(i+addr) ^ 0x66)
+</code></pre>
+
     </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -304,6 +256,12 @@
             
         </div>
         <script src="/js/main.js"></script>
+        
+        
+
+
+
+
         
     </body>
 </html>
