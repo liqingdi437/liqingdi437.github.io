@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>SMB信息泄露 | 李青帝</title>
+        <title>CTF夺旗-SMB信息泄露 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -147,7 +147,7 @@
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
                 <div class="article">
     <div>
-        <h1>SMB信息泄露</h1>
+        <h1>CTF夺旗-SMB信息泄露</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -158,11 +158,11 @@
         </span>
         
         <span class="category">
-            <a href="/categories/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/">
+            <a href="/categories/SMB%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                信息泄露
+                SMB信息泄露
             </a>
         </span>
         
@@ -175,6 +175,11 @@
             
             <span class="tag">
                 
+                <a href="/tags/CTF/" style="color: #00a596">CTF</a>
+            </span>
+            
+            <span class="tag">
+                
                 <a href="/tags/SMB/" style="color: #ff7d73">SMB</a>
             </span>
             
@@ -184,7 +189,7 @@
     
     <div class="content" v-pre>
         <h1 id="SMB信息泄露"><a href="#SMB信息泄露" class="headerlink" title="SMB信息泄露"></a><strong>SMB信息泄露</strong></h1><p>从外部进入最终<strong>root</strong>主机，取得<strong>flag</strong></p>
-<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309220123130.png" alt="image-20230922012234207"></p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309240232991.png" alt="image-20230922012234207"></p>
 <h1 id="信息探测"><a href="#信息探测" class="headerlink" title="信息探测"></a><strong>信息探测</strong></h1><p><strong>对于只是给定一个对应IP的靶场机器，我们需要用对其进行扫描，探测开放的服务。</strong></p>
 <p><strong>渗透其实是对服务的漏洞探测，然后进行对应的数据包发送，获取机器的最高权限。</strong></p>
 <pre><code class="shell">nmap -sV IP        #挖掘开放服务信息
