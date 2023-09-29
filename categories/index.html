@@ -1,15 +1,19 @@
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8" />
-        <title>categories | 李青帝</title>
-        <meta name="author" content="李青帝" />
-        <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
-        <meta name="keywords" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <link rel="icon" href="/images/QQ%E5%9B%BE%E7%89%8720220914212402.jpg" />
-        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+        <head>
+            <meta charset="utf-8" />
+            <title>
+                categories | 李青帝
+            </title>
+            <meta name="author" content="李青帝" />
+            <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
+            <meta name="keywords" content="" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+            <meta name="referrer" content="no-referrer" />
+            <link rel="icon" href="/images/QQ%E5%9B%BE%E7%89%8720220914212402.jpg" />
+            <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
 <link rel="stylesheet" href="/css/fonts.min.css" />
 <script> const mixins = {}; </script>
@@ -35,19 +39,20 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-    <meta name="generator" content="Hexo 6.3.0"></head>
-    <body>
-        <div id="layout">
-            <transition name="fade">
-                <div id="loading" v-show="loading">
-                    <div id="loading-circle">
-                        <h2>LOADING</h2>
-                        <p>加载过慢请开启缓存 浏览器默认开启</p>
-                        <img src="/images/loading.gif" />
+        <meta name="generator" content="Hexo 6.3.0"></head>
+
+        <body>
+            <div id="layout">
+                <transition name="fade">
+                    <div id="loading" v-show="loading">
+                        <div id="loading-circle">
+                            <h2>LOADING</h2>
+                            <p>加载过慢请开启缓存 浏览器默认开启</p>
+                            <img src="/images/loading.gif" />
+                        </div>
                     </div>
-                </div>
-            </transition>
-            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+                </transition>
+                <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
     <nav id="desktop-menu">
         <a class="title" href="/">
             <span>李青帝</span>
@@ -140,26 +145,15 @@
     <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
 </transition>
 
-            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div id="archives">
+                    <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                        <div id="archives">
     
     <div class="categories-tags">
         
         
         
         <span>
-            <a href="/categories/FTP%E6%9C%8D%E5%8A%A1%E5%90%8E%E9%9D%A2%E5%88%A9%E7%94%A8/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                FTP服务后面利用
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/categories/CTF%E5%A4%BA%E6%97%97-Capture-the-flag/" style="background: #ffa2c4">
+            <a href="/categories/CTF%E5%A4%BA%E6%97%97-Capture-the-flag/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -170,18 +164,18 @@
         
         
         <span>
-            <a href="/categories/SSH%E6%9C%8D%E5%8A%A1%E6%B8%97%E9%80%8F/" style="background: #ff7d73">
+            <a href="/categories/FTP%E6%9C%8D%E5%8A%A1%E5%90%8E%E9%9D%A2%E5%88%A9%E7%94%A8/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                SSH服务渗透
+                FTP服务后面利用
             </a>
         </span>
         
         
         
         <span>
-            <a href="/categories/SMB%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" style="background: #00bcd4">
+            <a href="/categories/SMB%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" style="background: #00a596">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -192,7 +186,7 @@
         
         
         <span>
-            <a href="/categories/%E6%95%99%E7%A8%8B/" style="background: #ffa2c4">
+            <a href="/categories/%E6%95%99%E7%A8%8B/" style="background: #ff7d73">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -203,7 +197,18 @@
         
         
         <span>
-            <a href="/categories/Algorithm/" style="background: #00bcd4">
+            <a href="/categories/SSH%E6%9C%8D%E5%8A%A1%E6%B8%97%E9%80%8F/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                SSH服务渗透
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/categories/Algorithm/" style="background: #ffa2c4">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -216,7 +221,7 @@
     
 </div>
 
-                <footer id="footer">
+                            <footer id="footer">
     <div id="footer-wrap">
         <div>
             &copy;
@@ -234,16 +239,17 @@
     </div>
 </footer>
 
+                    </div>
+                    
+                        <transition name="fade">
+                            <div id="preview" ref="preview" v-show="previewShow">
+                                <img id="preview-content" ref="previewContent" />
+                            </div>
+                        </transition>
+                        
             </div>
+            <script src="/%20/js/main.js"></script>
             
-            <transition name="fade">
-                <div id="preview" ref="preview" v-show="previewShow">
-                    <img id="preview-content" ref="previewContent" />
-                </div>
-            </transition>
-            
-        </div>
-        <script src="/js/main.js"></script>
-        
-    </body>
-</html>
+        </body>
+
+    </html>

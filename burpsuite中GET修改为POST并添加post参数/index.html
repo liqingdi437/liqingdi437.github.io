@@ -1,15 +1,19 @@
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8" />
-        <title>burpsuite中GET修改为POST并添加post参数 | 李青帝</title>
-        <meta name="author" content="李青帝" />
-        <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
-        <meta name="keywords" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <link rel="icon" href="/images/QQ%E5%9B%BE%E7%89%8720220914212402.jpg" />
-        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+        <head>
+            <meta charset="utf-8" />
+            <title>
+                burpsuite中GET修改为POST并添加post参数 | 李青帝
+            </title>
+            <meta name="author" content="李青帝" />
+            <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
+            <meta name="keywords" content="" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+            <meta name="referrer" content="no-referrer" />
+            <link rel="icon" href="/images/QQ%E5%9B%BE%E7%89%8720220914212402.jpg" />
+            <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
 <link rel="stylesheet" href="/css/fonts.min.css" />
 <script> const mixins = {}; </script>
@@ -42,19 +46,20 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-    <meta name="generator" content="Hexo 6.3.0"></head>
-    <body>
-        <div id="layout">
-            <transition name="fade">
-                <div id="loading" v-show="loading">
-                    <div id="loading-circle">
-                        <h2>LOADING</h2>
-                        <p>加载过慢请开启缓存 浏览器默认开启</p>
-                        <img src="/images/loading.gif" />
+        <meta name="generator" content="Hexo 6.3.0"></head>
+
+        <body>
+            <div id="layout">
+                <transition name="fade">
+                    <div id="loading" v-show="loading">
+                        <div id="loading-circle">
+                            <h2>LOADING</h2>
+                            <p>加载过慢请开启缓存 浏览器默认开启</p>
+                            <img src="/images/loading.gif" />
+                        </div>
                     </div>
-                </div>
-            </transition>
-            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+                </transition>
+                <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
     <nav id="desktop-menu">
         <a class="title" href="/">
             <span>李青帝</span>
@@ -147,8 +152,8 @@
     <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
 </transition>
 
-            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div class="article">
+                    <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                        <div class="article">
     <div>
         <h1>burpsuite中GET修改为POST并添加post参数</h1>
     </div>
@@ -169,22 +174,22 @@
             
             <span class="tag">
                 
-                <a href="/tags/CTF/" style="color: #03a9f4">CTF</a>
+                <a href="/tags/CTF/" style="color: #ffa2c4">CTF</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/burpsuite/" style="color: #ffa2c4">burpsuite</a>
+                <a href="/tags/burpsuite/" style="color: #00bcd4">burpsuite</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/POST/" style="color: #00bcd4">POST</a>
+                <a href="/tags/POST/" style="color: #ff7d73">POST</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/GET/" style="color: #ff7d73">GET</a>
+                <a href="/tags/GET/" style="color: #00a596">GET</a>
             </span>
             
         </span>
@@ -198,7 +203,7 @@
         :disabled="cryptoStatus == 'success'"
         ref="crypto"
         placeholder="文章被加密，请输入密码"
-        data-encrypted="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"
+        data-encrypted="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"
         data-shasum="e0d255638923063cb88cff166e3308565dce6891b61e8524c36033a714b03621"
         v-model="crypto"
     />
@@ -214,7 +219,7 @@
     
 </div>
 
-                <footer id="footer">
+                            <footer id="footer">
     <div id="footer-wrap">
         <div>
             &copy;
@@ -232,22 +237,23 @@
     </div>
 </footer>
 
+                    </div>
+                    
+                        <transition name="fade">
+                            <div id="preview" ref="preview" v-show="previewShow">
+                                <img id="preview-content" ref="previewContent" />
+                            </div>
+                        </transition>
+                        
             </div>
+            <script src="/%20/js/main.js"></script>
             
-            <transition name="fade">
-                <div id="preview" ref="preview" v-show="previewShow">
-                    <img id="preview-content" ref="previewContent" />
-                </div>
-            </transition>
-            
-        </div>
-        <script src="/js/main.js"></script>
-        
-        
+                
 
 
 
 
-        
-    </body>
-</html>
+                    
+        </body>
+
+    </html>
