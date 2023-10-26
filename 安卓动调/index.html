@@ -1,0 +1,357 @@
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>安卓动调 | 李青帝</title>
+        <meta name="author" content="李青帝" />
+        <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/QQ%E5%9B%BE%E7%89%8720220914212402.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+        <canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>李青帝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;李青帝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div class="article">
+    <div>
+        <h1>安卓动调</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/26
+        </span>
+        
+        <span class="category">
+            <a href="/categories/Andriod/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Andriod
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/Andriod/" style="color: #ffa2c4">Andriod</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <meta name="referrer" content="no-referrer" />
+
+<p>这是下面b站大佬的笔记（转发）</p>
+<p>录播链接</p>
+<p>b站：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.bilibili.com/video/BV1ca411C7HZ">https://www.bilibili.com/video/BV1ca411C7HZ</a></p>
+<p>百度网盘：链接：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.baidu.com/s/14o04bVkqCw9t_tNJdT8pgg?pwd=wkuh">https://pan.baidu.com/s/14o04bVkqCw9t_tNJdT8pgg?pwd=wkuh</a>  提取码：wkuh</p>
+<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h2><ul>
+<li><p>jadx-gui（反编译</p>
+</li>
+<li><p>jd-jui（反编译</p>
+</li>
+<li><p>jclasslib（patch</p>
+</li>
+<li><p>等等</p>
+</li>
+</ul>
+<p>下载地址：建议github<del>或者52破解</del></p>
+<p>目前的jd-jui(v1.6.6)和旧版本的jadx-gui(v1.2.0)，都不能应用于java17，所以建议去github下载最新的release</p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225766.png" alt="image.png"></p>
+<p>jclasslib的主要作用就是编辑class文件</p>
+<h1 id="Andriod"><a href="#Andriod" class="headerlink" title="Andriod"></a>Andriod</h1><h2 id="安卓逆向入门"><a href="#安卓逆向入门" class="headerlink" title="安卓逆向入门"></a>安卓逆向入门</h2><p>参考链接</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/cyx-b/p/13426109.html">apk文件结构</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jianshu.com/p/640dddb982d9">Android manifest 语法详解</a></p>
+<p>把一个apk文件解压之后，大致能看到如下几个部分</p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225768.png" alt="image.png"></p>
+<p>有的时候也可能是像下面这样，多出来了lib和assets</p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225769.png" alt="image.png"></p>
+<p>META-INF：存放签名文件，是开发者最后release打包的时候进行的签名，以防止apk被二次打包</p>
+<p>res：一般用来存放xml和图标</p>
+<p>assets：存放图片等资源</p>
+<p>lib：存放动态链接库（如JNI，Java Native Interface</p>
+<p>classes.dex：安卓上的可执行程序，安卓逆向99%的时间要研究的东西，如有多个是因为每个dex里最多存放65535个方法，而项目的方法数超出了这个数量，所以被分成多个保存</p>
+<p>AndroidManifest.xml：配置清单，存放对于此app的一些配置，如程序入口点之类（编译后的，也就是说这个文件不可以直接阅读，但是可以通过jeb反编译</p>
+<p>resources.arsc：资源索引文件，包含语言包，汉化的话一般是反编译这个文件</p>
+<p>接下来我们来看一下这个<code>AndroidManifest.xml</code>文件</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;manifest android:versionCode=&quot;1&quot; android:versionName=&quot;1.0&quot; package=&quot;com.example.findit&quot; xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+  &lt;uses-sdk android:minSdkVersion=&quot;8&quot; android:targetSdkVersion=&quot;21&quot;/&gt;
+  &lt;application android:allowBackup=&quot;true&quot; android:debuggable=&quot;true&quot; android:icon=&quot;@drawable/ic_launcher&quot; android:label=&quot;@string/app_name&quot; android:theme=&quot;@style/AppTheme&quot;&gt;
+    &lt;activity android:label=&quot;@string/app_name&quot; android:name=&quot;.MainActivity&quot;&gt;
+      &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot;/&gt;
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;
+      &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+  &lt;/application&gt;
+&lt;/manifest&gt;
+</code></pre>
+<p>安卓逆向工具</p>
+<ul>
+<li><p>dex2jar：把classes.dex转化为classes.jar，从而使用jadx或jd-gui进行反编译</p>
+</li>
+<li><p>apktool：拆包打包用</p>
+</li>
+<li><p>AndroidKiller：据说挺好用的，但是我配置过几遍都没成功过，所以最后用了JEB</p>
+</li>
+<li><p>JEB（强烈推荐，非常好用</p>
+</li>
+<li><p>MT管理器</p>
+</li>
+<li><p>AXMLPrinter（反编译二进制格式下的AndroidManifest.xml，但其实后来发现apktool有相同的功能</p>
+</li>
+<li><p>等等</p>
+</li>
+</ul>
+<h2 id="JEB入门"><a href="#JEB入门" class="headerlink" title="JEB入门"></a>JEB入门</h2><p>参考链接</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.pnfsoftware.com/jeb/manual/workspace/">JEB官方文档</a></p>
+<h3 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h3><p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225770.png" alt="image.png"></p>
+<p>左上角是工程浏览器，相当于把一个apk解压缩再按照签名、字节码、资源文件来进行分类</p>
+<p>左下角是字节码浏览器，进行逆向的时候大部分时间看的是这里</p>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><blockquote>
+<p>大部分快捷键与ida是相同的，比如重命名（n）、注释（;）、交叉引用（x）、后退（esc）、跟进（双击或者enter）、反编译（tab）等</p>
+</blockquote>
+<h2 id="JEB调试"><a href="#JEB调试" class="headerlink" title="JEB调试"></a>JEB调试</h2><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.52pojie.cn/forum.php?mod=viewthread&tid=1262243">Jeb3.24动态安卓调试.smali使用 第一集 【入坑指南】</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.pnfsoftware.com/jeb/manual/android-debugging/">JEB官网文档</a></p>
+<p>首先将安卓模拟器根目录bin文件夹加入到系统环境变量(之后大概率要重启一下电脑</p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225771.png" alt="image.png"></p>
+<p>在模拟器开发者选项中打开usb调试，并选择调试应用</p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225772.png" alt="image.png"></p>
+<p>在class字节码界面选择合适位置按<code>ctrl+B</code>打断点，然后就可以开始调试了，但是有时会显示找不到设备</p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225773.png" alt="image.png"></p>
+<p>如果找不到设备，可以打开一个shell，尝试下面两个指令</p>
+<blockquote>
+<p>nox_adb.exe devices</p>
+<p>nox_adb.exe shell am start -D -n com.example.findit&#x2F;.MainActivity</p>
+<p>&#x2F;&#x2F;start -D -n后面换成你所调试apk的报名和入口点的类名</p>
+</blockquote>
+<h3 id="如何调试一个无法调试的apk"><a href="#如何调试一个无法调试的apk" class="headerlink" title="如何调试一个无法调试的apk"></a>如何调试一个无法调试的apk</h3><p>参考链接</p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.pnfsoftware.com/jeb/manual/android-debugging/">JEB官网文档</a></p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225774.png" alt="image.png"></p>
+<p>jeb官网中专门为无法调试的apk开了一个<code>Debugging non-debuggable apps</code>专栏，这里演示一下第三个方法，<code>Repackage your app</code></p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225775.png" alt="image.png"></p>
+<p>这里的思路其实主要就是在AndroidManifrst.xml中插入<code>application android:debuggable=&quot;true&quot;</code>，jeb也内置了这个方法，可以通过命令行调用</p>
+<pre><code class="bash">jeb_wincon.bat -c --makeapkdebug -- file.apk
+</code></pre>
+<p>然后就可以得到一个<strong>file_debuggable.apk</strong>，但是这个apk是没有签名的，直接拖进模拟器是安装不了的，于是我们需要用Android SDK中的<code>apksigner</code>来手动签名</p>
+<p>手动签名之前我们需要用<code>java/bin</code>目录下的<code>keytool</code>这个工具来生成一个<code>key.keystone</code></p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225777.png" alt="image.png"></p>
+<pre><code class="bash">keytool -genkey -alias key.keystore -keyalg RSA -validity 30000 -keystore key.keystore
+</code></pre>
+<p>Keytool 选项 描述<br>-genkey 产生一个键值对（公钥和私钥）<br>-alias 键的别名。<br>-keyalg 产生键的加密算法。支持DSA和RSA。<br>-keysize 产生键的长度。如果不支持，keytool用默认值1024 bits.通常我们用2048 bits 或更长的key。<br>-dname 专有名称，描述谁创建的密钥。该值被用作自签名证书的颁发者和主题字段。注意你可以不在命令行指定。如果没有指定keytool会提示你(CN,<br>OU, and so on)。<br>-keypass 键的密码。 主要为了安全起见，如果没提供，keytool会提示你输入。<br>-validity 键的有效期，单位：天<br>-keystore.keystore 用于存储私钥的文件。<br>-storepass 私钥存储文件的密码。 主要为了安全起见，如果没提供，keytool会提示你输入。这个密码不会存储在你的shell历史记录中。</p>
+<p>生成之后用<code>android-sdks\build-tools</code>目录下的<code>apksigner.bat</code>来给apk签名，签名时候会提示输入<code>key.keystone</code>的密码</p>
+<pre><code class="bash">.\apksigner.bat sign -ks key.keystore .\ile_debuggable.apk
+</code></pre>
+<h3 id="但是"><a href="#但是" class="headerlink" title="但是"></a>但是</h3><p>这种方法只能强制是一个apk变成debuggable，如果有代码中反调试的逻辑，还需要静态分析来绕过（比如Siyuan笔记的apk</p>
+<h2 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h2><pre><code class="bash"># 拆包
+apktool.bat d .\17.apk
+# 打包
+apktool.bat b 17
+</code></pre>
+<h1 id="C"><a href="#C" class="headerlink" title="C#"></a>C#</h1><p><code>C#</code>逆向工具其实有很多，不过我更喜欢<code>dnspy</code></p>
+<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310242225778.png" alt="image.png"></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2023 李青帝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;李青帝
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+
+
+
+
+        
+    </body>
+</html>
