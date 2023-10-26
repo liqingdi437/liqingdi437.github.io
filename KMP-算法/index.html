@@ -9,7 +9,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>CTF夺旗-FTP服务后面利用 | 李青帝</title>
+        <title>KMP-算法 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -159,22 +159,22 @@
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
                 <div class="article">
     <div>
-        <h1>CTF夺旗-FTP服务后面利用</h1>
+        <h1>KMP-算法</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/9/24
+            2023/10/26
         </span>
         
         <span class="category">
-            <a href="/categories/FTP%E6%9C%8D%E5%8A%A1%E5%90%8E%E9%9D%A2%E5%88%A9%E7%94%A8/">
+            <a href="/categories/Algorithm/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                FTP服务后面利用
+                Algorithm
             </a>
         </span>
         
@@ -187,12 +187,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/CTF/" style="color: #ff7d73">CTF</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/FTP/" style="color: #00a596">FTP</a>
+                <a href="/tags/KMP-Algorithm/" style="color: #00a596">KMP-Algorithm</a>
             </span>
             
         </span>
@@ -202,34 +197,154 @@
     <div class="content" v-pre>
         <meta name="referrer" content="no-referrer" />
 
-<p><strong><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309240143077.png" alt="image-20230924014344753"></strong></p>
-<h1 id="信息探测"><a href="#信息探测" class="headerlink" title="信息探测"></a><strong>信息探测</strong></h1><h2 id="扫描主机服务信息以及服务版本"><a href="#扫描主机服务信息以及服务版本" class="headerlink" title="扫描主机服务信息以及服务版本"></a><strong>扫描主机服务信息以及服务版本</strong></h2><p><strong><code>nmap -sV 靶场IP地址</code></strong></p>
-<h2 id="快速扫描主机全部信息"><a href="#快速扫描主机全部信息" class="headerlink" title="快速扫描主机全部信息"></a><strong>快速扫描主机全部信息</strong></h2><p><strong><code>nmap -T4 -A -v 靶场IP地址</code></strong></p>
-<ul>
-<li><strong>nmap：扫描工具</strong></li>
-<li><strong>-T4：以最快速度扫描</strong></li>
-<li><strong>-A：加载所有扫描模块进行扫描</strong></li>
-<li><strong>-v：返回探测的所有详细信息（包括发送数据包，靶场响应数据包）</strong></li>
-</ul>
-<h1 id="发现漏洞"><a href="#发现漏洞" class="headerlink" title="发现漏洞"></a><strong>发现漏洞</strong></h1><p><strong>分析nmap扫描结果，并对结果进行分析，挖掘可以利用的信息；</strong></p>
-<p><strong>使用seachspliot,查看漏洞信息，找到可利用的溢出代码；</strong></p>
-<h2 id="使用metasploit进行溢出"><a href="#使用metasploit进行溢出" class="headerlink" title="使用metasploit进行溢出"></a><strong>使用metasploit进行溢出</strong></h2><p><strong>打开metasploit在终端中输入msfconsole</strong></p>
-<p><strong>输入search对应的软件及版本号</strong></p>
-<h2 id="使用exploit"><a href="#使用exploit" class="headerlink" title="使用exploit"></a><strong>使用exploit</strong></h2><p><strong><code>use exploit</code></strong></p>
-<h2 id="查看可以使用的payload"><a href="#查看可以使用的payload" class="headerlink" title="查看可以使用的payload"></a><strong>查看可以使用的payload</strong></h2><p><strong><code>show payload</code></strong></p>
-<h2 id="设置payload"><a href="#设置payload" class="headerlink" title="设置payload"></a><strong>设置payload</strong></h2><p><strong><code>set payload</code></strong></p>
-<h2 id="设置参数"><a href="#设置参数" class="headerlink" title="设置参数"></a><strong>设置参数</strong></h2><p><strong><code>show options</code></strong></p>
-<p><strong><code>set rhost 被攻击机IP</code></strong></p>
-<p><strong><code>set lhost 攻击机IP</code></strong></p>
-<h2 id="进行远程溢出"><a href="#进行远程溢出" class="headerlink" title="进行远程溢出"></a><strong>进行远程溢出</strong></h2><p><strong><code>exploit</code></strong></p>
-<h2 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a><strong>执行命令</strong></h2><p><strong><code>id</code></strong></p>
-<h1 id="优化shell"><a href="#优化shell" class="headerlink" title="优化shell"></a><strong>优化shell</strong></h1><h2 id="使用python-pty开启终端"><a href="#使用python-pty开启终端" class="headerlink" title="使用python pty开启终端"></a><strong>使用python pty开启终端</strong></h2><p><strong><code>python -c &quot;import pty;pty.spawn(&#39;/bin/bash&#39;)&quot;</code></strong></p>
-<h1 id="获取flag"><a href="#获取flag" class="headerlink" title="获取flag"></a><strong>获取flag</strong></h1><p><strong>一般情况下，靶场机器的flag值是存放在服务器的根目录下，&#x2F;root&#x2F;目录。</strong></p>
-<p><strong><code>cd /root/</code></strong></p>
-<p><strong><code>ls</code></strong></p>
-<p><strong><code>cat flag</code></strong></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h1><p><strong>对于开放FTP，SSH，Telnet等服务的系统，可以尝试一些对应服务版本的漏洞代码；</strong></p>
-<p><strong>对于系统，一定要注意利用现成的EXP来root主机；</strong></p>
+<h1 id="Python版"><a href="#Python版" class="headerlink" title="Python版"></a>Python版</h1><pre><code class="python">def kmp_search(string, patt):
+    Name = build_next(patt)  # 假设我们已经算出了next数组
+    i = 0  # 主串中的指针
+    j = 0  # 子串中的指针
+    while i &lt; len(string):
+        if string[i] == patt[j]:  # 字符匹配，指针后移
+            i += 1
+            j += 1
+        elif j &gt; 0:  # 字符失配，根据next跳过子串前面的一些字符
+            j = Name[j - 1]
+        else:  # 子串第一个字符就失配
+            i += 1
+        if j == len(patt):  # 匹配成功
+            return i - j
+
+
+def build_next(patt):
+    &quot;&quot;&quot;
+    计算next数组
+    &quot;&quot;&quot;
+    next = [0]  # next数组（初值元素一个0
+    prefix_len = 0  # 当前共同前后缀的长度
+    i = 1
+    while i &lt; len(patt):
+        if patt[prefix_len] == patt[i]:
+            prefix_len += 1
+            next.append(prefix_len)
+            i += 1
+        else:
+            if prefix_len == 0:
+                next.append(0)
+                i += 1
+            else:
+                prefix_len = next[prefix_len - 1]
+    return next
+
+
+if __name__ == &quot;__main__&quot;:
+    s = &quot;hello world!&quot;
+    s1 = &quot;world&quot;
+    index = kmp_search(s, s1)
+    print(index)
+</code></pre>
+<h1 id="C版"><a href="#C版" class="headerlink" title="C版"></a>C版</h1><pre><code class="c">#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#define NEXT_MAX 100
+int* builed_next(char patt[])
+&#123;
+    //计算next数组
+    int next[NEXT_MAX] = &#123; 0 &#125;;
+    int prefix_len = 0;
+    int i = 1;
+    while (i &lt; strlen(patt))
+    &#123;
+        if (patt[prefix_len] == patt[i])
+        &#123;
+            prefix_len++;
+            next[i] = prefix_len;
+            i++;
+        &#125;
+        else
+        &#123;
+            if (prefix_len == 0)
+                next[i] == 0, i++;
+            else
+                prefix_len = next[prefix_len - 1];
+        &#125;
+    &#125;
+    int* p = next;
+    return p;
+&#125;
+int kmp_search(char string[], char patt[])
+&#123;
+    int* next = builed_next(patt);
+    int i = 0, j = 0;
+    while (i &lt; strlen(string))
+    &#123;
+        if (string[i] == patt[j])
+            i++, j++;
+        else if (j &gt; 0)
+            j = next[j - 1];
+        else
+            i++;
+        if (j == strlen(patt))
+            return i - j;
+    &#125;
+&#125;
+int main()
+&#123;
+    char s[] = &quot;hello world!&quot;;
+    char s1[] = &quot;world&quot;;
+    int index = kmp_search(s, s1);
+    printf(&quot;%d&quot;, index);
+&#125;
+</code></pre>
+<h1 id="C-版"><a href="#C-版" class="headerlink" title="C++版"></a>C++版</h1><pre><code class="c++">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#define NEXT_MAX 100
+using namespace std;
+int * builed_next(string patt)
+&#123;
+    //计算next数组
+    int next[NEXT_MAX] = &#123; 0 &#125;;
+    int prefix_len = 0;
+    int i = 1;
+    while (i &lt; patt.length())
+    &#123;
+        if (patt[prefix_len] == patt[i])
+        &#123;
+            prefix_len++;
+            next[i] = prefix_len;
+            i++;
+        &#125;
+        else
+        &#123;
+            if (prefix_len == 0)
+                next[i] == 0, i++;
+            else
+                prefix_len = next[prefix_len - 1];
+        &#125;
+    &#125;
+    int* p = next;
+    return p;
+&#125;
+int kmp_search(string s, string patt)
+&#123;
+    int* next = builed_next(patt);
+    int i = 0, j = 0;
+    while (i&lt;s.length())
+    &#123;
+        if (s[i] == patt[j])
+            i++, j++;
+        else if (j &gt; 0)
+            j = next[j - 1];
+        else
+            i++;
+        if (j == patt.length())
+            return i - j;
+    &#125;
+&#125;
+int main()
+&#123;
+    string s = &quot;hello world!&quot;;
+    string s1 = &quot;world&quot;;
+    int index = kmp_search(s, s1);
+    cout &lt;&lt; index;
+&#125;
+</code></pre>
 
     </div>
     
