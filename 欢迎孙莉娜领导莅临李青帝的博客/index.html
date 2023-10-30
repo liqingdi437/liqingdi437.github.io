@@ -36,6 +36,9 @@
 <script src="/js/lib/preview.js"></script>
 
 
+<script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
+
 
 
 
@@ -172,17 +175,20 @@
         
     </div>
     
-    <div class="content" v-pre>
-        <meta name="referrer" content="no-referrer" />
-
-<span id="more"></span>
-
-<p><img src="https://ts1.cn.mm.bing.net/th/id/R-C.faa4bf011bb473f9612d4064217ce167?rik=5pDFIA7pYPLWyQ&riu=http://img95.699pic.com/photo/40141/0642.gif_wh860.gif&ehk=/0HMY/uohoOqat7U532GAIDSP9XZQM4lTWX1/ANqU6M=&risl=1&pid=ImgRaw&r=0" alt="爱心透明通道GIF动图图片-正版gif素材401410642-摄图网"></p>
-<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310302213767.jpg" alt="8415f43cf5235247d0879ae2feac3b2"></p>
-<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310302213794.jpg" alt="5909d919f69e0b0237810ad9cedec83"></p>
-<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310302215649.jpg" alt="6617007d429a44c97bcaef783915bc5"></p>
-
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus == 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="U2FsdGVkX1+hlEK+1SxP8JP+XOzsPzEVlqI3g571sWgD1V5UH6fZ+YshfnbrnxhJ1p6LolbwpkPWPX3232Y+YeO5nBNc6ulfceJWftWeFAMSXpgux4qLORRXfviocVDXb0ywNC5Dy9Tg8lwuB3pFFqXUbBLQM5e4v71/T/ymZ4nBTDPdp3q0PWIUZdlcfe4lO7y+SOmS8UPUDnhorlFCcXbZtWShs4AtX9otBlXT/Yu/o3ZYenEf06ZIkYehCNFoCyctfv8ILdpMgGBFIs6KARVBb6FJxVGpMoTY90K3wHTkeBSxZrCr/LXl2V65H2IcU2l4jzr6lDXwngBcJ76V+mxCioSKNMUM+L6kWN6YAROi8yWmPjrVHBWH0C2QJ8Ut4u4CglMBB37+aqLLVW0+vI0Sa2X9MvXtGhl2gQ34iuHdoy3Glnl4EuMsg+7+yqbOB0sI9CJUtFx3mVVgGbsM5uB/8Po4/PhkKa6CwQ8ZrwzhDbZAwa6qMmkPXHvPQLCQms1IEzKJH5vxK0G2cpHO7ZDrEJ8GH4c3c1D3OL4QbNLv/+KaluNB1iVBbYji1PNKF73UgReD/MI2JrL7x7hoglo2hdPb4SnstK4JDG6/QLuyOz+FpIw4YglADAkRKcKJvXLxUqjkgrJW+9zMSx04c8RSMkkr2uuLH4yh5s17536PW2/ipYvdVPQOYqKaRUQ9q863njwFxWA0rz4yBaAGOlHO1IapmkuLcENIRCvgCZVX75mLdkLU9ODkgdAcchIZNE5FR9xExpdj4zznCcSOndtuzv03cUCsh9O+HehSZZBGxAPEsx+RWhYz+bSkkSC2l/dn05XRsaOC/s/jELv05PmmZqeRc4P3MkvleYolJVCxV5fmMC7DIcuFEMCxlI3BKuw62ade9K8arYtcEvZFFRWMgLABr6VaLYIUhR8ckw4z7Dj9JKKl887wTMhCxJ7AaF/iD98FN6SbSqlQRnNiU09mGH+91A3slZ4P6CP8S32SnhIzfqnKhSPnZtteMsX3eu2Gsn3LpFEPpRj0Jqpqzzs2frrx6yi6euyCt7tJQfzqs3oEIVtCXPLi96F1arvQSU0QRZK5BQiPM4BXiyElYsn2FU/5pQG+sP2xgW1uiFQ57cSUv9AnAKTUy8oHpg9xt7ZFqQiZIbC8dwJZAdWGJcYplj8gMszgBQ6mC645o8Oc76B2zEGcmVm7Tf5/1CIGSRVuBUlagviqdXG7uyLekjOcqWckm6o7kaNo4A+z6TqxICjbBzlMuo6yVowpoPZZ"
+        data-shasum="78ec8f9dd759f8de526f7d8e405dfd737ffb7f76583c1b6285b9100ee25adf97"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus == 'success'"></div>
+    </transition>
     
     
     
