@@ -9,7 +9,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>burpsuite中GET修改为POST并添加post参数 | 李青帝</title>
+        <title>欢迎孙莉娜领导的莅临李青帝的博客 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -159,116 +159,25 @@
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
                 <div class="article">
     <div>
-        <h1>burpsuite中GET修改为POST并添加post参数</h1>
+        <h1>欢迎孙莉娜领导的莅临李青帝的博客</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/9/17
+            2023/10/30
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/CTF/" style="color: #ff7d73">CTF</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/burpsuite/" style="color: #00bcd4">burpsuite</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/POST/" style="color: #00a596">POST</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/GET/" style="color: #00bcd4">GET</a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
         <meta name="referrer" content="no-referrer" />
 
-<h1 id="MoeCTF-http"><a href="#MoeCTF-http" class="headerlink" title="[MoeCTF]http"></a>[MoeCTF]http</h1><p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309180005034.png"></p>
-<pre><code>this is GET method,
+<span id="more"></span>
 
-# your mission:
-
-1.use parameter: UwU=u
-2.post **form**: Luv=u
-3.use admin character
-4.request from 127.0.0.1
-5.use browser &#39;MoeBrowser&#39;
-Complete All Missions
-</code></pre>
-<p>抓包：</p>
-<pre><code class="http">GET / HTTP/1.1
-Host: localhost:59172
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
-Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
-Accept-Encoding: gzip, deflate
-Connection: close
-Cookie: character=guest
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-</code></pre>
-<p>发到repeater</p>
-<p>根据任务要求</p>
-<pre><code>1.GET:UwU=u
-
-2.POST:Luv=u
-
-3.Cookie:character=admin
-
-4.X-Forwarded-For: 127.0.0.1
-
-5.User-Agent: MoeBrowser
-</code></pre>
-<p>修改后，得到：</p>
-<pre><code class="http">POST /?UwU=u HTTP/1.1
-Host: 127.0.0.1:59172
-User-Agent: MoeBrowser
-X-Forwarded-For: 127.0.0.1
-Connection: close
-Cookie: character=admin
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Content-Length: 5
-Content-Type: application/x-www-form-urlencoded
-
-Luv=u
-</code></pre>
-<p>具体解题过程：</p>
-<p>1.<code>GET / HTTP/1.1</code>修改为<code>GET /?UwU=u HTTP/1.1</code></p>
-<p>或者在<code>Params</code>中添加一个<code>Type：URL，Name：UwU，Value：u</code></p>
-<p>2.<code>GET /?UwU=u HTTP/1.1</code>修改为<code>POST /?UwU=u HTTP/1.1</code></p>
-<p>在<code>Params</code>中添加一个<code>Type：body，Name：Luv，Value：u</code></p>
-<p>3.<code>Cookie:character=guest</code>修改为<code>Cookie:character=admin</code></p>
-<p>4.在<code>User-Agent</code>下面添加<code>X-Forwarded-For: 127.0.0.1</code></p>
-<p>它的具体作用为：告诉服务端请求的来源地址是 <code>127.0.0.1</code>。</p>
-<p>5.将<code>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0</code>修改为<code>User-Agent: MoeBrowser</code></p>
-<p>注：可用火狐的插件**<u><em>hackbar v2</em></u>**进行解题</p>
+<p><img src="https://ts1.cn.mm.bing.net/th/id/R-C.faa4bf011bb473f9612d4064217ce167?rik=5pDFIA7pYPLWyQ&riu=http://img95.699pic.com/photo/40141/0642.gif_wh860.gif&ehk=/0HMY/uohoOqat7U532GAIDSP9XZQM4lTWX1/ANqU6M=&risl=1&pid=ImgRaw&r=0" alt="爱心透明通道GIF动图图片-正版gif素材401410642-摄图网"></p>
 
     </div>
     
