@@ -9,7 +9,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>欢迎孙莉娜领导的莅临李青帝的博客 | 李青帝</title>
+        <title>欢迎孙莉娜领导莅临李青帝的博客 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -35,6 +35,9 @@
 
 <script src="/js/lib/preview.js"></script>
 
+
+<script src="https://cdn.staticfile.org/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="/js/lib/crypto.js"></script>
 
 
 
@@ -159,7 +162,7 @@
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
                 <div class="article">
     <div>
-        <h1>欢迎孙莉娜领导的莅临李青帝的博客</h1>
+        <h1>欢迎孙莉娜领导莅临李青帝的博客</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -172,17 +175,20 @@
         
     </div>
     
-    <div class="content" v-pre>
-        <meta name="referrer" content="no-referrer" />
-
-<span id="more"></span>
-
-<p><img src="https://ts1.cn.mm.bing.net/th/id/R-C.faa4bf011bb473f9612d4064217ce167?rik=5pDFIA7pYPLWyQ&riu=http://img95.699pic.com/photo/40141/0642.gif_wh860.gif&ehk=/0HMY/uohoOqat7U532GAIDSP9XZQM4lTWX1/ANqU6M=&risl=1&pid=ImgRaw&r=0" alt="爱心透明通道GIF动图图片-正版gif素材401410642-摄图网"></p>
-<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310302213767.jpg" alt="8415f43cf5235247d0879ae2feac3b2"></p>
-<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310302213794.jpg" alt="5909d919f69e0b0237810ad9cedec83"></p>
-<p><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202310302215649.jpg" alt="6617007d429a44c97bcaef783915bc5"></p>
-
-    </div>
+    
+    <input
+        id="crypto"
+        :class="['input', cryptoStatus]"
+        :disabled="cryptoStatus == 'success'"
+        ref="crypto"
+        placeholder="文章被加密，请输入密码"
+        data-encrypted="U2FsdGVkX1/sIbef4/HS/2rEagG3yMLBjruryAxTLW3cA7oMqiNqNWg8waU3ac3b+gPSe0Cr78tnqhFs+Gs/8VlYojCnioVP6BkC8BDWKlcBkGwOj2IYoTS5zr/nKNF+KTJhs6oCtTFo0XMqprWtyiP1IcGE+81+03p3kKmA62ZFlb7FOjQIdLEeKa/bd0ZvXRdLtpLgNpsO5Ad5xkOF9JsiiO5fTI4txTSkJZirZzOzZbpHehurfXuHaFPw0w5qzFuzb4g0CQ3lN+wVUUiocs08UEp+Tn0RrvT1kR7VZVOOxgstjCgGpcAY8WD1karDD3TVsgTYCIq7+eCxSSum2/6MU8CeeYEcNa4kHgx2dbMVxdOI0ETatVTC62QwKhUbUdsesrCwJkC6uQESBbdUih8ODHLzAIh+d5w9jloiBZXyCcEOTwCRwhclan/TNcBRPPNTzFTiKO1HUHgHx7Wx4gyM2EcSoZGHUr5TUnK+wHWG6g70jBe/DMMvWu8EGQxPbCBA3YRWxX3MSNy6Gc6ZvH5gtjq7uI3VCI+yrsvzGwYfH7wgula8JPP2qlYbRWdolM3Fz+A+ieEYk9VzR1QZgmBEMM6DhoWOvsqxHAkHmeLZL2JH0U2Seo0NO5uhmPRhQuYmzd5qrpDrWOtkxfUosnt/mSj/YZOK1/ivvkBEhnzAP54M9kQ+ELKJtrXzRD1JrhaO5fbaH/fnFNFDzadwruZCvNy1HVyuYHPPl5eUQbQ3wIY7REX++BGHNSH9/gTCmhPmr9jX59IDrrhd3ZsGzlUYGcEvJR6gN7O/NKUD2heCsWm8ClKGJq2zpnm4wKchFz3SobwvUrIM51GBKajTZmWbR4/wL626x2abe7TgMuOE6RRP4wA8KLa8sv+NqfOT5tYYRF/2SFGKqBHZjuRzyTIn8Itdn3Lwo9U5jp0BNHs+WOPDxvuJFXAvnMe9QXkmoMMV9lfkpSt3xVaeomUYMfntd1A3+Bp2JObkHflxQDW0PGShTB8JF99E0V3u+0NFdjcIIapScChSImlpr624Wn1YEXT86jr+JEswWdVvVBk+ROlqt9Dt8qOr51sHS7DSyeIYFT8Uq8D9XLUfwJcwQg=="
+        data-shasum="03057e0685b4026c77d0d3ff0ae2e1dd816a836a07955e2c80239532dcf422b7"
+        v-model="crypto"
+    />
+    <transition name="fade">
+        <div class="content" ref="content" v-show="cryptoStatus == 'success'"></div>
+    </transition>
     
     
     
