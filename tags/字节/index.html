@@ -9,7 +9,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>CTF夺旗-FTP服务后面利用 | 李青帝</title>
+        <title>Tags: 字节 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -34,10 +34,6 @@
 
 
 <script src="/js/lib/preview.js"></script>
-
-
-
-
 
 
 
@@ -157,87 +153,195 @@
 </transition>
 
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-                <div class="article">
-    <div>
-        <h1>CTF夺旗-FTP服务后面利用</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/9/24
-        </span>
+                <div id="archives">
+    
+    <div class="categories-tags">
         
-        <span class="category">
-            <a href="/categories/FTP%E6%9C%8D%E5%8A%A1%E5%90%8E%E9%9D%A2%E5%88%A9%E7%94%A8/">
+        
+        
+        <span>
+            <a href="/tags/CTF/" style="background: #00a596">
                 <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                    <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
-                FTP服务后面利用
+                CTF
             </a>
         </span>
         
         
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/CTF/" style="color: #ffa2c4">CTF</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/FTP/" style="color: #00a596">FTP</a>
-            </span>
-            
+        
+        <span>
+            <a href="/tags/FTP/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                FTP
+            </a>
         </span>
+        
+        
+        
+        <span>
+            <a href="/tags/hexo/" style="background: #ffa2c4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                hexo
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/SSH/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                SSH
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/SMB/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                SMB
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/KMP-Algorithm/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                KMP-Algorithm
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/burpsuite/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                burpsuite
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/POST/" style="background: #00a596">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                POST
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/GET/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                GET
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/IDAPython/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                IDAPython
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/SMC/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                SMC
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/Andriod/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                Andriod
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/C/" style="background: #ffa2c4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                C
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E5%AD%97%E8%8A%82/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                字节
+            </a>
+        </span>
+        
+        
+        
         
     </div>
     
-    <div class="content" v-pre>
-        <meta name="referrer" content="no-referrer" />
-
-<p><strong><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309240143077.png" alt="image-20230924014344753"></strong></p>
-<h1 id="信息探测"><a href="#信息探测" class="headerlink" title="信息探测"></a><strong>信息探测</strong></h1><h2 id="扫描主机服务信息以及服务版本"><a href="#扫描主机服务信息以及服务版本" class="headerlink" title="扫描主机服务信息以及服务版本"></a><strong>扫描主机服务信息以及服务版本</strong></h2><p><strong><code>nmap -sV 靶场IP地址</code></strong></p>
-<h2 id="快速扫描主机全部信息"><a href="#快速扫描主机全部信息" class="headerlink" title="快速扫描主机全部信息"></a><strong>快速扫描主机全部信息</strong></h2><p><strong><code>nmap -T4 -A -v 靶场IP地址</code></strong></p>
-<ul>
-<li><strong>nmap：扫描工具</strong></li>
-<li><strong>-T4：以最快速度扫描</strong></li>
-<li><strong>-A：加载所有扫描模块进行扫描</strong></li>
-<li><strong>-v：返回探测的所有详细信息（包括发送数据包，靶场响应数据包）</strong></li>
-</ul>
-<h1 id="发现漏洞"><a href="#发现漏洞" class="headerlink" title="发现漏洞"></a><strong>发现漏洞</strong></h1><p><strong>分析nmap扫描结果，并对结果进行分析，挖掘可以利用的信息；</strong></p>
-<p><strong>使用seachspliot,查看漏洞信息，找到可利用的溢出代码；</strong></p>
-<h2 id="使用metasploit进行溢出"><a href="#使用metasploit进行溢出" class="headerlink" title="使用metasploit进行溢出"></a><strong>使用metasploit进行溢出</strong></h2><p><strong>打开metasploit在终端中输入msfconsole</strong></p>
-<p><strong>输入search对应的软件及版本号</strong></p>
-<h2 id="使用exploit"><a href="#使用exploit" class="headerlink" title="使用exploit"></a><strong>使用exploit</strong></h2><p><strong><code>use exploit</code></strong></p>
-<h2 id="查看可以使用的payload"><a href="#查看可以使用的payload" class="headerlink" title="查看可以使用的payload"></a><strong>查看可以使用的payload</strong></h2><p><strong><code>show payload</code></strong></p>
-<h2 id="设置payload"><a href="#设置payload" class="headerlink" title="设置payload"></a><strong>设置payload</strong></h2><p><strong><code>set payload</code></strong></p>
-<h2 id="设置参数"><a href="#设置参数" class="headerlink" title="设置参数"></a><strong>设置参数</strong></h2><p><strong><code>show options</code></strong></p>
-<p><strong><code>set rhost 被攻击机IP</code></strong></p>
-<p><strong><code>set lhost 攻击机IP</code></strong></p>
-<h2 id="进行远程溢出"><a href="#进行远程溢出" class="headerlink" title="进行远程溢出"></a><strong>进行远程溢出</strong></h2><p><strong><code>exploit</code></strong></p>
-<h2 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a><strong>执行命令</strong></h2><p><strong><code>id</code></strong></p>
-<h1 id="优化shell"><a href="#优化shell" class="headerlink" title="优化shell"></a><strong>优化shell</strong></h1><h2 id="使用python-pty开启终端"><a href="#使用python-pty开启终端" class="headerlink" title="使用python pty开启终端"></a><strong>使用python pty开启终端</strong></h2><p><strong><code>python -c &quot;import pty;pty.spawn(&#39;/bin/bash&#39;)&quot;</code></strong></p>
-<h1 id="获取flag"><a href="#获取flag" class="headerlink" title="获取flag"></a><strong>获取flag</strong></h1><p><strong>一般情况下，靶场机器的flag值是存放在服务器的根目录下，&#x2F;root&#x2F;目录。</strong></p>
-<p><strong><code>cd /root/</code></strong></p>
-<p><strong><code>ls</code></strong></p>
-<p><strong><code>cat flag</code></strong></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h1><p><strong>对于开放FTP，SSH，Telnet等服务的系统，可以尝试一些对应服务版本的漏洞代码；</strong></p>
-<p><strong>对于系统，一定要注意利用现成的EXP来root主机；</strong></p>
-
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2023/11/19</div>
+            <a href="/%E5%AD%97%E8%8A%82%E5%AD%98%E5%82%A8%E9%A1%BA%E5%BA%8F/">
+                <h3>字节存储顺序</h3>
+            </a>
+            <div class="info">
+                
+                
+                <span class="tags">
+                    <span class="icon">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </span>
+                    
+                    
+                    <span class="tag">
+                        
+                        <a href="/tags/%E5%AD%97%E8%8A%82/" style="color: #00a596">字节</a>
+                    </span>
+                    
+                </span>
+                
+            </div>
+        </div>
     </div>
-    
-    
-    
-    
-    
-    
     
 </div>
 
@@ -269,12 +373,6 @@
             
         </div>
         <script src="/js/main.js"></script>
-        
-        
-
-
-
-
         
     </body>
 </html>
