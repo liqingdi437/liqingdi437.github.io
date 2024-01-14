@@ -1,0 +1,912 @@
+<canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>学生考勤管理系统设计 | 李青帝</title>
+        <meta name="author" content="李青帝" />
+        <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/QQ%E5%9B%BE%E7%89%8720220914212402.jpg" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+        <canvas
+    id="fireworks"
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"
+></canvas>
+<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/fireworks.min.js"></script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>李青帝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;李青帝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div class="article">
+    <div>
+        <h1>学生考勤管理系统设计</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/1/15
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E8%AF%BE%E8%AE%BE/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                课设
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #ffa2c4">C++</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <meta name="referrer" content="no-referrer" />
+
+<span id="more"></span>
+
+<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><p>题目  “<strong>学生考勤管理系统设计</strong>”</p>
+<p><strong>1</strong>、问题描述</p>
+<p><strong>学生信息包括：学号、姓名、性别、年龄、班级等信息。</strong></p>
+<p><strong>考勤信息包括：缺课日期、第几节课、课程名称、学生姓名、缺课类型（迟到、早退、请假和旷课）。</strong></p>
+<p><strong>2</strong>、功能要求</p>
+<p><strong>（1）添加功能：程序能够添加学生的记录和缺课记录，提供选择界面供用户选择所要添加的类别。添加学生记录时，要求学号要唯一，如果添加了重复学号的记录时，则提示数据添加重复并取消添加。</strong></p>
+<p><strong>（2）查询功能：可根据学号、姓名等信息对已添加的学生记录进行查询，如果未找到，给出相应的提示信息，如果找到，则显示相应的记录信息。还可以按课程名、学生姓名对缺课记录进行查询。</strong></p>
+<p><strong>（3）显示功能：可显示当前系统中所有学生的记录和缺课记录，每条记录占据一行。</strong></p>
+<p><strong>（4）编辑功能：可根据查询结果对相应的记录进行修改，修改时注意学号的唯一性。</strong></p>
+<p><strong>（5）删除功能：主要实现对已添加的学生记录进行删除。如果当前系统中没有相应的记录，则提示“记录为空！”并返回操作。</strong></p>
+<p><strong>（6）统计功能：能根据多种参数进行统计。能按课程名统计出学生旷课的信息、还可以按姓名统计出任一学生的旷课情况。需要排序。</strong></p>
+<p><strong>（7）保存功能：可将当前系统中各类记录存入文件中，存入方式任意。</strong></p>
+<p><strong>（8）读取功能：可将保存在文件中的信息读入到当前系统中，供用户进行使用。</strong></p>
+<p><strong>3</strong>、问题的解决方案</p>
+<p><strong>根据系统功能要求，可以将问题解决分为以下步骤：</strong></p>
+<p><strong>（1）应用系统分析，建立该系统的功能模块框图以及界面的组织和设计；</strong></p>
+<p><strong>（2）分析系统中的各个实体及它们之间的关系；</strong></p>
+<p><strong>（3）根据问题描述，设计系统的类层次；</strong></p>
+<p><strong>（4）完成类层次中各个类的描述；</strong></p>
+<p><strong>（5）完成类中各个成员函数的定义；</strong></p>
+<p><strong>（6）完成系统的应用模块；</strong></p>
+<p><strong>（7）功能调试；</strong></p>
+<p><strong>（8）完成系统总结报告。</strong></p>
+<h1 id="代码实验"><a href="#代码实验" class="headerlink" title="代码实验"></a>代码实验</h1><h2 id="Students-h"><a href="#Students-h" class="headerlink" title="Students.h"></a>Students.h</h2><pre><code class="c++">#pragma once
+#include&lt;string&gt;
+#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#include &lt;windows.h&gt;
+using namespace std;
+typedef class Students
+&#123;
+public:
+    Students();
+    Students(int, string, string, int, string);
+    //Students(int i, string n, string s, int a, string c) :id(i), name(n), sex(s), age(a), clbum(c) &#123;&#125;;
+    void add_student();
+    void show_student();
+    void edit_student();
+    int get_id();
+protected:
+    int id;//学号
+    string name;//姓名
+    string sex;//性别
+    int age;//年龄
+    string clbum;//班级
+&#125;Stu;
+typedef class Attendances : public Students
+&#123;
+public:
+    Attendances();
+    Attendances(string, string, string, string);
+    Attendances(int i, string n, string s, int a, string c, string d, string p, string cc, string t) :Students(i, n, s, a, c) &#123;
+        date = d;
+        period = p;
+        course = cc;
+        type = t;
+    &#125;
+    void add_attendance();
+    void show_attendance();
+    string get_period();
+    string get_name();
+    string get_course();
+    bool flag = true;
+private:
+    string date;//缺课日期
+    string period;//第几节课
+    string course;//课程名称
+    string type;//缺课类型
+&#125;Att;
+typedef struct Node
+&#123;
+    Stu s;
+    Att a;
+    Node* next;
+&#125;LNode,*Linklist;
+void menu();
+void init_list();
+void clear_buffer();
+void add_student();
+void add_attendance();
+void query_student();
+void query_attendance();
+void show_all();
+void edit_student();
+void delete_student();
+void count_absent_period();
+void count_absent_name();
+void save_data();
+void load_data();
+</code></pre>
+<h2 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h2><pre><code class="c++">#pragma once
+#include&quot;Students.h&quot;
+using namespace std;
+
+int main()
+&#123;
+    init_list();
+    load_data();
+    menu();
+&#125;
+</code></pre>
+<h2 id="Students-cpp"><a href="#Students-cpp" class="headerlink" title="Students.cpp"></a>Students.cpp</h2><pre><code class="c++">#pragma once
+#include&quot;Students.h&quot;
+Linklist head;
+Students::Students()
+&#123;
+    id = NULL;
+    name = &quot;NULL&quot;;
+    sex = &quot;NULL&quot;;
+    age = NULL;
+    clbum = &quot;NULL&quot;;
+&#125;
+Students::Students(int i, string n, string s, int a, string c) &#123;
+    id = i;
+    name = n;
+    sex = s;
+    age = a;
+    clbum = c;
+&#125;
+Attendances::Attendances()
+&#123;
+    date = &quot;NULL&quot;;
+    period = &quot;NULL&quot;;
+    course = &quot;NULL&quot;;
+    type = &quot;NULL&quot;;
+&#125;
+Attendances::Attendances(string d, string p, string c, string t)
+&#123;
+    date = d;
+    period = p;
+    course = c;
+    type = t;
+&#125;
+void Students::add_student() 
+&#123;
+    cout &lt;&lt; &quot;请输入学号：&quot;;
+    cin &gt;&gt; id;
+    cout &lt;&lt; &quot;\n请输入姓名：&quot;;
+    cin &gt;&gt; name;
+    cout &lt;&lt; &quot;\n请输入性别：&quot;;
+    cin &gt;&gt; sex;
+    cout &lt;&lt; &quot;\n请输入年龄：&quot;;
+    cin &gt;&gt; age;
+    cout &lt;&lt; &quot;\n请输入班级：&quot;;
+    cin &gt;&gt; clbum;
+    cout &lt;&lt; endl;
+&#125;
+void Students::show_student()
+&#123;
+    cout &lt;&lt; id &lt;&lt; &#39;\t&#39; &lt;&lt; name &lt;&lt; &#39;\t&#39; &lt;&lt; sex &lt;&lt; &#39;\t&#39; &lt;&lt; age &lt;&lt; &#39;\t&#39; &lt;&lt; clbum &lt;&lt; endl;
+&#125;
+void Students::edit_student()
+&#123;
+    cout &lt;&lt; &quot;\n请输入姓名：&quot;;
+    cin &gt;&gt; name;
+    cout &lt;&lt; &quot;\n请输入性别：&quot;;
+    cin &gt;&gt; sex;
+    cout &lt;&lt; &quot;\n请输入年龄：&quot;;
+    cin &gt;&gt; age;
+    cout &lt;&lt; &quot;\n请输入班级：&quot;;
+    cin &gt;&gt; clbum;
+&#125;
+int Students::get_id()
+&#123;
+    return id;
+&#125;
+void Attendances::add_attendance()
+&#123;
+    cout &lt;&lt; &quot;请输入缺课日期(YYYY-MM-DD)：&quot;;
+    cin &gt;&gt; date;
+    cout &lt;&lt; &quot;\n请输入第几节课：&quot;;
+    cin &gt;&gt; period;
+    cout &lt;&lt; &quot;\n请输入课程名称：&quot;;
+    cin &gt;&gt; course;
+    cout &lt;&lt; &quot;\n请输入学生姓名：&quot;;
+    cin &gt;&gt; name;
+    cout &lt;&lt; &quot;\n请输入缺课类型(迟到、早退、请假、旷课)：&quot;;
+    cin &gt;&gt; type;
+    cout &lt;&lt; endl;
+&#125;
+void Attendances::show_attendance()
+&#123;
+    cout &lt;&lt; date &lt;&lt; &quot;\t\t&quot; &lt;&lt; period &lt;&lt; &quot;\t\t&quot; &lt;&lt; course &lt;&lt; &quot;\t\t&quot; &lt;&lt;name&lt;&lt;&quot;\t\t&quot; &lt;&lt; type &lt;&lt; endl;
+&#125;
+string Attendances::get_period()
+&#123;
+    return period;
+&#125;
+string Attendances::get_name()
+&#123;
+    return name;
+&#125;
+string Attendances::get_course()
+&#123;
+    return course;
+&#125;
+void menu()
+&#123;
+    char ch;
+    while (true)
+    &#123;
+        cout&lt;&lt;(&quot;\t\t\t\t\t***************************************&quot;)&lt;&lt;endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t菜单\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b1. 添加记录\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b2. 查询记录\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b3. 显示所有记录\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b4. 编辑记录\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b5. 删除记录\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b6. 统计旷课情况\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b7. 保存数据\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b8. 加载数据\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\b\b\b0. 退出程序\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+        cout&lt;&lt;(&quot;\t\t\t\t\t请选择操作：&quot;);
+        ch = getchar();
+        clear_buffer();
+        system(&quot;cls&quot;);
+        switch (ch)
+        &#123;
+        case &#39;1&#39;:
+            cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t请选择添加的记录类型\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b1. 学生\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b2. 考勤\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t请选择操作：&quot;);
+            //cout &lt;&lt; &quot;请选择添加的记录类型（1-学生，2-考勤）：&quot;;
+            ch = getchar();
+            clear_buffer();
+            system(&quot;cls&quot;);
+            switch (ch)
+            &#123;
+            case &#39;1&#39;:add_student(); break;
+            case &#39;2&#39;:add_attendance(); break;
+            default:
+                cout &lt;&lt; &quot;无效的选择！\n&quot;;
+                break;
+            &#125;
+            break;
+        case &#39;2&#39;:
+            cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t请选择查询的记录类型\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b1. 学生\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b2. 考勤\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t请选择操作：&quot;);
+            //cout &lt;&lt; &quot;请选择查询的记录类型（1-学生，2-考勤）：&quot;;
+            ch = getchar();
+            clear_buffer();
+            system(&quot;cls&quot;);
+            switch (ch)
+            &#123;
+            case &#39;1&#39;:query_student(); break;
+            case &#39;2&#39;:query_attendance(); break;
+            default:
+                cout &lt;&lt; &quot;无效的选择！\n&quot;;
+                break;
+            &#125;
+            break;
+        case &#39;3&#39;:
+            show_all();
+            break;
+        case &#39;4&#39;:edit_student(); break;
+        case &#39;5&#39;:delete_student(); break;
+        case &#39;6&#39;:
+            cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t请选择统计旷课情况的类型\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b\b1. 按课程名称统计\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b\b2. 按学生姓名统计\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+            cout &lt;&lt; (&quot;\t\t\t\t\t请选择操作：&quot;);
+            //cout &lt;&lt; &quot;请选择统计旷课情况的类型（1-按课程名称统计，2-按学生姓名统计）：&quot;;
+            ch = getchar();
+            clear_buffer();
+            system(&quot;cls&quot;);
+            switch (ch)
+            &#123;
+            case &#39;1&#39;:count_absent_period(); break;
+            case &#39;2&#39;:count_absent_name(); break;
+            default:
+                cout &lt;&lt; &quot;无效的选择！\n&quot;;
+                break;
+            &#125;
+            break;
+        case &#39;7&#39;:save_data();	cout &lt;&lt; &quot;保存成功！&quot; &lt;&lt; endl &lt;&lt; endl; break;
+        case &#39;8&#39;:load_data(); 	cout &lt;&lt; &quot;加载成功！&quot; &lt;&lt; endl &lt;&lt; endl; break;
+        case &#39;0&#39;:save_data(); cout &lt;&lt; &quot;退出成功！&quot;&lt;&lt;endl; exit(0);
+        default:cout &lt;&lt; &quot;无效的选择！\n&quot;; exit(0);
+        &#125;
+        clear_buffer();
+        system(&quot;pause&quot;);
+        system(&quot;cls&quot;);
+    &#125;
+&#125;
+void init_list()
+&#123;
+    head = new Node;
+    head-&gt;next = NULL;
+&#125;
+void clear_buffer()
+&#123;
+    char ch;
+    while ((ch = getchar()) != &#39;\n&#39; &amp;&amp; ch != EOF);
+&#125;
+void add_student()
+&#123;
+    Linklist current,newNode = new Node;
+    newNode-&gt;a.add_student();
+    newNode-&gt;a.flag = false;
+    newNode-&gt;next = NULL;
+    while (true)
+    &#123;
+        if (head-&gt;next == NULL)
+        &#123;
+            head-&gt;next = newNode;
+            break;
+        &#125;
+        else
+        &#123;
+            current = head-&gt;next;
+            while (current-&gt;next != NULL)
+            &#123;
+                current = current-&gt;next;
+            &#125;
+            if (current-&gt;a.get_id() == newNode-&gt;a.get_id())
+            &#123;
+                cout&lt;&lt; &quot;学号重复！&quot;&lt;&lt;endl&lt;&lt;endl;
+                break;
+            &#125;
+            current-&gt;next = newNode;
+            break;
+        &#125;
+    &#125;
+    save_data();
+&#125;
+void add_attendance()
+&#123;
+    Linklist current, newNode = new Node;
+    newNode-&gt;a.add_attendance();
+    newNode-&gt;next = NULL;
+    if (head-&gt;next == NULL)
+    &#123;
+        head-&gt;next = newNode;
+    &#125;
+    else
+    &#123;
+        current = head-&gt;next;
+        while (current-&gt;next != NULL)
+        &#123;
+            current = current-&gt;next;
+        &#125;
+        current-&gt;next = newNode;
+    &#125;
+    save_data();
+&#125;
+void query_student()
+&#123;
+    int input = 0;
+    int id;
+    bool flag = false;
+    string name;
+    Linklist current = head-&gt;next;
+    cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t请选择该学生的查询方式\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b1. 学号\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b2. 姓名\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t请选择操作：&quot;);
+    //cout &lt;&lt; &quot;请选择该学生的查询方式：（1-学号，2-姓名）：&quot;;
+    cin &gt;&gt; input;
+    system(&quot;cls&quot;);
+    if (input == 1)
+    &#123;
+        cout &lt;&lt; &quot;请输入该学生的学号：&quot;;
+        cin &gt;&gt; id;
+        cout &lt;&lt; endl &lt;&lt; &quot;学号&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;姓名&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;性别&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;年龄&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;班级&quot; &lt;&lt; endl;
+        while (current != NULL)
+        &#123;
+            if (current-&gt;a.flag == false&amp;&amp;current-&gt;a.get_id()==id)
+            &#123;
+                current-&gt;a.show_student();
+                flag = true;
+            &#125;
+            current = current-&gt;next;
+        &#125;
+        if (flag == false)
+        &#123;
+            cout &lt;&lt; endl &lt;&lt; &quot;记录为空！&quot; &lt;&lt; endl;
+        &#125;
+        cout &lt;&lt; endl;
+    &#125;
+    else if (input == 2)
+    &#123;
+        cout &lt;&lt; &quot;请输入该学生的姓名：&quot;;
+        cin &gt;&gt; name;
+        cout &lt;&lt;endl&lt;&lt; &quot;学号&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;姓名&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;性别&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;年龄&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;班级&quot; &lt;&lt; endl;
+        while (current != NULL)
+        &#123;
+            if (current-&gt;a.flag == false &amp;&amp; current-&gt;a.get_name() == name)
+            &#123;
+                current-&gt;a.show_student();
+                flag = true;
+            &#125;
+            current = current-&gt;next;
+        &#125;
+        if (flag == false)
+        &#123;
+            cout &lt;&lt; endl &lt;&lt; &quot;记录为空！&quot; &lt;&lt; endl;
+        &#125;
+        cout &lt;&lt; endl;
+    &#125;
+    else
+    &#123;
+        cout &lt;&lt; &quot;无效的选择!&quot;&lt;&lt;endl&lt;&lt;endl;
+    &#125;
+&#125;
+void query_attendance()
+&#123;
+    int input = 0;
+    bool flag = false;
+    string course,name;
+    Linklist current = head-&gt;next;
+    cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t请选择该考勤的查询方式\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b1. 课程名称\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\b\b\b2. 学生姓名\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t*|\t\t\t\t\t\b\b\b|*&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t***************************************&quot;) &lt;&lt; endl;
+    cout &lt;&lt; (&quot;\t\t\t\t\t请选择操作：&quot;);
+    //cout &lt;&lt; &quot;请选择该考勤的查询方式：（1-课程名称，2-学生姓名）：&quot;;
+    cin &gt;&gt; input;
+    system(&quot;cls&quot;);
+    if (input == 1)
+    &#123;
+        cout &lt;&lt; &quot;请输入需要查询课程名称：&quot;;
+        cin &gt;&gt; course;
+        cout &lt;&lt;endl&lt;&lt; &quot;缺课日期&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;第几节课&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;课程名称&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;学生姓名&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;缺课类型&quot; &lt;&lt; endl;
+        while (current != NULL)
+        &#123;
+            if (current-&gt;a.flag == true &amp;&amp; current-&gt;a.get_course()==course)
+            &#123;
+                current-&gt;a.show_attendance();
+                flag = true;
+            &#125;
+            current = current-&gt;next;
+        &#125;
+        if (flag == false)
+        &#123;
+            cout &lt;&lt; endl &lt;&lt; &quot;记录为空！&quot; &lt;&lt; endl;
+        &#125;
+        cout &lt;&lt; endl;
+    &#125;
+    else if (input == 2)
+    &#123;
+        cout &lt;&lt; &quot;请输入需要查询学生姓名：&quot;;
+        cin &gt;&gt; name;
+        cout &lt;&lt;endl&lt;&lt; &quot;缺课日期&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;第几节课&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;课程名称&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;学生姓名&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;缺课类型&quot; &lt;&lt; endl;
+        while (current != NULL)
+        &#123;
+            if (current-&gt;a.flag == true &amp;&amp; current-&gt;a.get_name() == name)
+            &#123;
+                current-&gt;a.show_attendance();
+                flag = true;
+            &#125;
+            current = current-&gt;next;
+        &#125;
+        if (flag == false)
+        &#123;
+            cout &lt;&lt; endl &lt;&lt; &quot;记录为空！&quot; &lt;&lt; endl;
+        &#125;
+        cout &lt;&lt; endl;
+    &#125;
+    else
+    &#123;
+        cout &lt;&lt; &quot;无效的选择!&quot; &lt;&lt; endl&lt;&lt;endl;
+    &#125;
+&#125;
+void show_all()
+&#123;
+    Linklist current= head-&gt;next, current_2=head-&gt;next;
+    cout &lt;&lt; &quot;\t\tStudents&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;---------------------------------------------&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;学号&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;姓名&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;性别&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;年龄&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;班级&quot; &lt;&lt; endl;
+    while (current!=NULL)
+    &#123;
+        if (current-&gt;a.flag == false)
+        &#123;
+            current-&gt;a.show_student();
+        &#125;
+        current = current-&gt;next;
+    &#125;
+    cout &lt;&lt; &quot;----------------end--------------------------&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;**********************************************&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;\t\tAttendance&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;---------------------------------------------------------------------------&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;缺课日期&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;第几节课&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;课程名称&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;学生姓名&quot; &lt;&lt; &#39;\t&#39; &lt;&lt; &quot;缺课类型&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;---------------------------------------------------------------------------&quot; &lt;&lt; endl;
+    while (current_2 != NULL)
+    &#123;
+        if (current_2-&gt;a.flag==true)
+        &#123;
+            current_2-&gt;a.show_attendance();
+        &#125;
+        current_2 = current_2-&gt;next;
+    &#125;
+    cout &lt;&lt; &quot;----------------------------------end--------------------------------------&quot; &lt;&lt; endl;
+&#125;
+void edit_student()
+&#123;
+    Linklist current = head-&gt;next, current_2 = head;
+    int id;
+    cout &lt;&lt; &quot;请输入需要修改学生的学号：&quot;;
+    cin &gt;&gt; id;
+    while (current != NULL)
+    &#123;
+        if (current-&gt;a.get_id()==id)
+        &#123;
+            current-&gt;a.edit_student();
+        &#125;
+        current = current-&gt;next;
+    &#125;
+    cout &lt;&lt; endl;
+    save_data();
+&#125;
+void delete_student()
+&#123;
+    Linklist current = head-&gt;next;
+    Linklist current_2 = head;
+    int id;
+    bool flag = true;
+    cout &lt;&lt; &quot;请输入需要删除的学生学号：&quot;;
+    cin &gt;&gt; id;
+    while (current != NULL)
+    &#123;
+        if (current-&gt;a.get_id() == id)
+        &#123;
+            current_2-&gt;next = current-&gt;next;
+            current = NULL;
+            cout &lt;&lt; endl &lt;&lt; &quot;删除成功！&quot; &lt;&lt; endl&lt;&lt;endl;
+            flag = false;
+            break;
+        &#125;
+        current_2 = current;
+        current = current-&gt;next;
+    &#125;
+    if (flag == true)
+    &#123;
+        cout &lt;&lt; endl &lt;&lt; &quot;记录为空！\n&quot; &lt;&lt; endl;
+    &#125;
+&#125;
+void count_absent_period()
+&#123;
+    Linklist current = head-&gt;next, current_2 = head;
+    int count = 0;
+    string period;
+    cout &lt;&lt; &quot;请输入需要统计的课程名称：&quot;;
+    cin &gt;&gt; period;
+    while (current != NULL)
+    &#123;
+        if (current-&gt;a.get_period()==period)
+        &#123;
+            count++;
+        &#125;
+        current = current-&gt;next;
+    &#125;
+    cout &lt;&lt; endl&lt;&lt; period &lt;&lt; &quot;共有：&quot; &lt;&lt; count &lt;&lt; &quot;条记录!&quot; &lt;&lt; endl&lt;&lt;endl;
+&#125;
+void count_absent_name()
+&#123;
+    Linklist current = head-&gt;next, current_2 = head;
+    int count = 0;
+    string name;
+    cout &lt;&lt; &quot;请输入需要统计的学生姓名：&quot;;
+    cin &gt;&gt; name;
+    while (current != NULL)
+    &#123;
+        if (current-&gt;a.get_name() == name&amp;&amp;current-&gt;a.flag==true)
+        &#123;
+            count++;
+        &#125;
+        current = current-&gt;next;
+    &#125;
+    cout &lt;&lt;endl&lt;&lt; name &lt;&lt; &quot;共有：&quot; &lt;&lt; count &lt;&lt; &quot;条记录!&quot; &lt;&lt; endl&lt;&lt;endl;
+&#125;
+void save_data()
+&#123;
+    fstream f(&quot;students.dat&quot;, ios::trunc|ios::out | ios::binary);
+    Linklist current = head-&gt;next;
+    if (!f)
+    &#123;
+        cerr &lt;&lt; &quot;open error!&quot; &lt;&lt; endl;
+        abort();
+    &#125;
+    while (current!= NULL)
+    &#123;
+        f.write(reinterpret_cast&lt;char*&gt;(&amp;current-&gt;a), sizeof(current-&gt;a));
+        current = current-&gt;next;
+    &#125;
+    f.close();
+&#125;
+void load_data()
+&#123;
+    fstream f(&quot;students.dat&quot;, ios::in | ios::binary);
+    if (!f)
+    &#123;
+        cerr &lt;&lt; &quot;open error!&quot; &lt;&lt; endl;
+        abort();
+    &#125;
+    Linklist current = new Node;
+    current-&gt;next = NULL;
+    Linklist H = current;
+    Linklist p=H;
+    bool flag = true;
+    while (f.read(reinterpret_cast&lt;char*&gt;(&amp;current-&gt;a), sizeof(current-&gt;a)))&#123;
+        flag = false;
+        p-&gt;next = current;
+        p = current;
+        Linklist newNode = new Node;
+        newNode-&gt;next = NULL;
+        current-&gt;next = newNode;
+        current = newNode;
+    &#125; 
+    delete current;
+    p-&gt;next = NULL;
+    if (flag)
+    &#123;
+        cout &lt;&lt; &quot;文件为空！&quot;;
+        exit(0);
+    &#125;
+    f.close();
+    head-&gt;next= H;
+&#125;
+</code></pre>
+<p><strong>注意点：必须先存入一个数据，id查重未完全写好</strong></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2024 李青帝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;李青帝
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+
+
+
+
+        
+    </body>
+</html>

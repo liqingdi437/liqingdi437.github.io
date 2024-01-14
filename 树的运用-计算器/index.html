@@ -9,7 +9,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>CTF夺旗-FTP服务后面利用 | 李青帝</title>
+        <title>树的运用:计算器 | 李青帝</title>
         <meta name="author" content="李青帝" />
         <meta name="description" content="他年我诺为青帝，报与桃花一处开。" />
         <meta name="keywords" content="" />
@@ -159,22 +159,22 @@
             <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
                 <div class="article">
     <div>
-        <h1>CTF夺旗-FTP服务后面利用</h1>
+        <h1>树的运用:计算器</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/9/24
+            2024/1/15
         </span>
         
         <span class="category">
-            <a href="/categories/FTP%E6%9C%8D%E5%8A%A1%E5%90%8E%E9%9D%A2%E5%88%A9%E7%94%A8/">
+            <a href="/categories/%E8%AF%BE%E8%AE%BE/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                FTP服务后面利用
+                课设
             </a>
         </span>
         
@@ -187,12 +187,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/CTF/" style="color: #ffa2c4">CTF</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/FTP/" style="color: #00bcd4">FTP</a>
+                <a href="/tags/Python/" style="color: #03a9f4">Python</a>
             </span>
             
         </span>
@@ -202,34 +197,112 @@
     <div class="content" v-pre>
         <meta name="referrer" content="no-referrer" />
 
-<p><strong><img src="https://gitee.com/liqingdi437/my_blog_images/raw/master/imgs/202309240143077.png" alt="image-20230924014344753"></strong></p>
-<h1 id="信息探测"><a href="#信息探测" class="headerlink" title="信息探测"></a><strong>信息探测</strong></h1><h2 id="扫描主机服务信息以及服务版本"><a href="#扫描主机服务信息以及服务版本" class="headerlink" title="扫描主机服务信息以及服务版本"></a><strong>扫描主机服务信息以及服务版本</strong></h2><p><strong><code>nmap -sV 靶场IP地址</code></strong></p>
-<h2 id="快速扫描主机全部信息"><a href="#快速扫描主机全部信息" class="headerlink" title="快速扫描主机全部信息"></a><strong>快速扫描主机全部信息</strong></h2><p><strong><code>nmap -T4 -A -v 靶场IP地址</code></strong></p>
-<ul>
-<li><strong>nmap：扫描工具</strong></li>
-<li><strong>-T4：以最快速度扫描</strong></li>
-<li><strong>-A：加载所有扫描模块进行扫描</strong></li>
-<li><strong>-v：返回探测的所有详细信息（包括发送数据包，靶场响应数据包）</strong></li>
-</ul>
-<h1 id="发现漏洞"><a href="#发现漏洞" class="headerlink" title="发现漏洞"></a><strong>发现漏洞</strong></h1><p><strong>分析nmap扫描结果，并对结果进行分析，挖掘可以利用的信息；</strong></p>
-<p><strong>使用seachspliot,查看漏洞信息，找到可利用的溢出代码；</strong></p>
-<h2 id="使用metasploit进行溢出"><a href="#使用metasploit进行溢出" class="headerlink" title="使用metasploit进行溢出"></a><strong>使用metasploit进行溢出</strong></h2><p><strong>打开metasploit在终端中输入msfconsole</strong></p>
-<p><strong>输入search对应的软件及版本号</strong></p>
-<h2 id="使用exploit"><a href="#使用exploit" class="headerlink" title="使用exploit"></a><strong>使用exploit</strong></h2><p><strong><code>use exploit</code></strong></p>
-<h2 id="查看可以使用的payload"><a href="#查看可以使用的payload" class="headerlink" title="查看可以使用的payload"></a><strong>查看可以使用的payload</strong></h2><p><strong><code>show payload</code></strong></p>
-<h2 id="设置payload"><a href="#设置payload" class="headerlink" title="设置payload"></a><strong>设置payload</strong></h2><p><strong><code>set payload</code></strong></p>
-<h2 id="设置参数"><a href="#设置参数" class="headerlink" title="设置参数"></a><strong>设置参数</strong></h2><p><strong><code>show options</code></strong></p>
-<p><strong><code>set rhost 被攻击机IP</code></strong></p>
-<p><strong><code>set lhost 攻击机IP</code></strong></p>
-<h2 id="进行远程溢出"><a href="#进行远程溢出" class="headerlink" title="进行远程溢出"></a><strong>进行远程溢出</strong></h2><p><strong><code>exploit</code></strong></p>
-<h2 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a><strong>执行命令</strong></h2><p><strong><code>id</code></strong></p>
-<h1 id="优化shell"><a href="#优化shell" class="headerlink" title="优化shell"></a><strong>优化shell</strong></h1><h2 id="使用python-pty开启终端"><a href="#使用python-pty开启终端" class="headerlink" title="使用python pty开启终端"></a><strong>使用python pty开启终端</strong></h2><p><strong><code>python -c &quot;import pty;pty.spawn(&#39;/bin/bash&#39;)&quot;</code></strong></p>
-<h1 id="获取flag"><a href="#获取flag" class="headerlink" title="获取flag"></a><strong>获取flag</strong></h1><p><strong>一般情况下，靶场机器的flag值是存放在服务器的根目录下，&#x2F;root&#x2F;目录。</strong></p>
-<p><strong><code>cd /root/</code></strong></p>
-<p><strong><code>ls</code></strong></p>
-<p><strong><code>cat flag</code></strong></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h1><p><strong>对于开放FTP，SSH，Telnet等服务的系统，可以尝试一些对应服务版本的漏洞代码；</strong></p>
-<p><strong>对于系统，一定要注意利用现成的EXP来root主机；</strong></p>
+<span id="more"></span>
+
+<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><p><strong>树的应用：计算器</strong></p>
+<p><strong>要求：计算器需要实现所有单击版计算器所具有的功能，并要用到树结构。</strong></p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="python">import re
+from tkinter import *
+
+from lark import Lark
+
+grammar = &quot;&quot;&quot;
+    ?start: sum
+    ?sum: product
+        | sum &quot;+&quot; product   -&gt; add
+        | sum &quot;-&quot; product   -&gt; sub
+    ?product: atom
+        | product &quot;*&quot; atom  -&gt; mul
+        | product &quot;÷&quot; atom  -&gt; div
+    ?atom: NUMBER           -&gt; number
+        | &quot;-&quot; atom         -&gt; neg
+        | &quot;(&quot; sum &quot;)&quot;
+        | atom &quot;%&quot;          -&gt; percentage
+    %import common.CNAME
+    %import common.NUMBER
+    %import common.WS
+    %ignore WS
+&quot;&quot;&quot;
+
+
+class Calculator:
+    def __init__(self, master):
+        self.master = master
+        master.title(&quot;Calculator&quot;)
+
+        self.parser = Lark(grammar, start=&#39;start&#39;)
+
+        self.display = Entry(master, width=25, font=(&#39;Arial&#39;, 16))
+        self.display.grid(row=0, column=0, columnspan=4, padx=5, pady=5)
+
+        self.display_result = Entry(master, width=25, font=(&#39;Arial&#39;, 16))
+        self.display_result.grid(row=1, column=0, columnspan=4, padx=5, pady=5)
+
+        buttons = [[&#39;C&#39;, &#39;↼&#39;, &#39;^&#39;, &#39;÷&#39;],
+                   [&#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;*&#39;],
+                   [&#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;-&#39;],
+                   [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;+&#39;],
+                   [&#39;%&#39;, &#39;0&#39;, &#39;.&#39;, &#39;=&#39;], ]
+
+        for i in range(len(buttons)):
+            for j in range(len(buttons[i])):
+                self.create_button(buttons[i][j], i + 2, j)
+
+    def create_button(self, text, row, column):
+        button = Button(self.master, text=text, width=5, height=2, font=(&#39;Arial&#39;, 16),
+                        command=lambda: self.click(text))
+        button.grid(row=row, column=column, padx=5, pady=5)
+
+    def click(self, key):
+        if key == &#39;=&#39;:
+            try:
+                expression = self.display.get()
+                if re.search(r&#39;\^&#39;, expression):
+                    result = eval(expression)
+                else:
+                    tree = self.parser.parse(expression)
+                    result = self.evaluate(tree)
+                self.display_result.delete(0, END)
+                self.display_result.insert(END, result)
+            except:
+                self.display_result.delete(0, END)
+                self.display_result.insert(END, &#39;Error&#39;)
+        elif key == &#39;C&#39;:
+            self.display.delete(0, END)
+            self.display_result.delete(0, END)
+        elif key == &#39;↼&#39;:
+            last_index = self.display.index(END) - 1
+            self.display.delete(last_index)
+        else:
+            self.display.insert(END, key)
+
+    def evaluate(self, tree):
+        if tree.data == &#39;number&#39;:
+            return float(tree.children[0])
+        elif tree.data == &#39;add&#39;:
+            return self.evaluate(tree.children[0]) + self.evaluate(tree.children[1])
+        elif tree.data == &#39;sub&#39;:
+            return self.evaluate(tree.children[0]) - self.evaluate(tree.children[1])
+        elif tree.data == &#39;mul&#39;:
+            return self.evaluate(tree.children[0]) * self.evaluate(tree.children[1])
+        elif tree.data == &#39;div&#39;:
+            return self.evaluate(tree.children[0]) / self.evaluate(tree.children[1])
+        elif tree.data == &#39;neg&#39;:
+            return -self.evaluate(tree.children[0])
+        elif tree.data == &#39;percentage&#39;:
+            return self.evaluate(tree.children[0]) / 100.0
+
+
+root = Tk()
+calculator = Calculator(root)
+root.mainloop()
+</code></pre>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>上述代码是一个简单的计算器应用程序。它使用了Python的Tkinter库来创建一个图形用户界面（GUI），并实现了基本的计算功能。</p>
+<p>代码定义了一个Calculator类，它包含了一个窗口（由Tkinter的Tk类创建），一个文本框用于显示输入和输出，以及一组按钮用于输入操作符和数字。</p>
+<p>计算器支持基本的四则运算（加法、减法、乘法和除法），同时还支持百分比计算。计算器通过解析用户输入的表达式，使用Lark库构建语法树，并通过递归地评估语法树来计算结果。</p>
+<p>用户可以通过点击按钮来输入表达式和操作符，并通过点击”&#x3D;”按钮来获取计算结果。如果输入的表达式不符合语法规则或者计算过程中出现错误，计算器会显示”Error”。</p>
+<p>用户还可以通过点击”C”按钮清除输入和输出，以及通过点击”↼”按钮删除最后一个字符。</p>
+<p>总之，这段代码实现了一个简单的图形界面计算器，可以执行基本的四则运算和百分比计算。</p>
 
     </div>
     
